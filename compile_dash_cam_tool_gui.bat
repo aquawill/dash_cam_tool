@@ -1,0 +1,1 @@
+pyinstaller -F dash_cam_tool_gui_ffmpeg.spec
