@@ -356,7 +356,7 @@ def generate_kml_and_csv(rootdir, dfr):
                     elif os.path.exists(video_file_list[video_file_index].split('.')[0] + '.GPX'):
                         source_trace = open(video_file_list[video_file_index].split('.')[0] + '.GPX', mode='r',
                                             encoding='utf-8')
-            image_sn = 0
+            image_sn = 1
             if source_trace:
                 msg_array = gps_trace_iterator(source_trace, dfr)
                 for msg_seg in msg_array:
@@ -365,6 +365,7 @@ def generate_kml_and_csv(rootdir, dfr):
                     date_time_tuple = datetime.datetime.strptime(
                         msg_seg[9].split('.')[0] + msg_seg[1].split('.')[0] + str(
                             int(msg_seg[1].split('.')[1]) * 100000), '%d%m%y%H%M%S%f')
+
                     # CSV attributes
                     gps_parsed = '{},{},{},{},{},{}\n'.format(
                         (csv_file_name_list[gps_file_index] + '-' + str(image_sn) + '.jpg').replace('.csv', ''),
@@ -391,7 +392,8 @@ def generate_kml_and_csv(rootdir, dfr):
                         image_file_abspath = os.path.join(image_folder_path, attrib[0])
                         if os.path.exists(image_file_abspath):
                             try:
-                                exif_injector(image_file_abspath, float(msg_seg[3]), float(msg_seg[5]), bearing)
+                                exif_injector(image_file_abspath, float(msg_seg[3]), float(msg_seg[5]), bearing,
+                                              date_time_tuple, speed)
                                 file_creation_time_modifier(image_file_abspath, date_time_tuple.timestamp())
                             except Exception:
                                 pass
@@ -400,7 +402,7 @@ def generate_kml_and_csv(rootdir, dfr):
         kml_file.write('</Document>\n</kml>')
 
 
-def exif_injector(image, decimal_lat, decimal_lon, direction):
+def exif_injector(image, decimal_lat, decimal_lon, direction, datetime_obj, speed):
     dms_formatter = lambda decimal: (int(decimal), int((float(decimal) - int(decimal)) * 60), round(
         (float((float(decimal) - int(decimal)) * 60) - int((float(decimal) - int(decimal)) * 60)) * 6000))
     dms_lat = dms_formatter(decimal_lat)
@@ -413,10 +415,13 @@ def exif_injector(image, decimal_lat, decimal_lon, direction):
         ew = b'E'
     else:
         ew = b'W'
-    geotag_info = piexif.dump(
-        {'GPS': {1: ns, 2: ((int(dms_lat[0]), 1), (int(dms_lat[1]), 1), (int(dms_lat[2]), 100)), 3: ew,
-                 4: ((int(dms_lon[0]), 1), (int(dms_lon[1]), 1), (int(dms_lon[2]), 100)), 5: 0, 6: (0, 384),
-                 16: direction}})
+    exif_datetime = datetime_obj.strftime(u'%Y:%m:%d %H:%M:%S')
+    gps_ifd = {1: ns, 2: ((int(dms_lat[0]), 1), (int(dms_lat[1]), 1), (int(dms_lat[2]), 100)), 3: ew,
+               4: ((int(dms_lon[0]), 1), (int(dms_lon[1]), 1), (int(dms_lon[2]), 100)),
+               13: (int(float(speed) * 100), 100), 12: b'K', 15: (int(direction), 1), 14: b'T'}
+
+    exif_ifd = {piexif.ExifIFD.DateTimeOriginal: exif_datetime}
+    geotag_info = piexif.dump({'GPS': gps_ifd, 'Exif': exif_ifd})
     if os.path.exists(image):
         piexif.insert(geotag_info, image)
 
