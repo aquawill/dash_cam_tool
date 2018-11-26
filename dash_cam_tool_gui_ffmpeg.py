@@ -501,6 +501,16 @@ def generate_dmo_trace(rootdir, format, dfr):
             break
 
 
+def mapillary_uploader(image_path, uid):
+    print('----------------------------')
+    print('Start uploading to Mapillary')
+    python27_runtime_path = os.path.join(os.getcwd(), 'py27/python.exe').replace('\\', '/')
+    mapillary_tools_path = os.path.join(os.getcwd(), 'py27/Scripts/mapillary_tools').replace('\\', '/')
+    mapillary_full_command = '{} {} process_and_upload --import_path "{}/images/" --user_name "{}"'.format(
+        python27_runtime_path, mapillary_tools_path, image_path, uid)
+    os.system(mapillary_full_command)
+
+
 def quit():
     global app
     app.destroy()
@@ -547,6 +557,7 @@ def purge():
 
 def runner():
     print('Task Starts!\n----------------------------')
+
     dfr = double_frame_rate.get()
     ev = extracting_video.get()
     input_path = user_input_path.get().replace('\\', '/')
@@ -554,10 +565,11 @@ def runner():
     mf = menu_format.get()
     res = res_selection.get()
     ph = pano_photo.get()
+    m_uid = mapillary_user_name.get()
     init_config = open('./config.ini', mode='w')
     init_config.write(
-        '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}'.format(input_path, output_path, res, extracting_audio.get(), mf, ev, str(dfr),
-                                                ph))
+        '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res, extracting_audio.get(), mf, ev,
+                                                          str(dfr), ph, mapillary_uploader_switch.get(), m_uid))
     init_config.close()
     if ev == 0:
         ea = 0
@@ -576,6 +588,7 @@ def runner():
     if os.path.exists(output_path + '/error_log.txt'):
         print('*** Some files couldn\'t be proccessed, Please check "error_log.txt". ***')
         os.system('notepad.exe ' + output_path + '/error_log.txt')
+    mapillary_uploader(input_path, mapillary_uid)
 
 
 if __name__ == '__main__':
@@ -621,6 +634,7 @@ if __name__ == '__main__':
     extracting_video = IntVar()
     double_frame_rate = BooleanVar()
     extracting_audio = IntVar()
+    mapillary_uploader_switch = IntVar()
     pano_photo = IntVar()
     Label(app, text='Video Source:').grid(row=0, column=0, padx=10, pady=10, sticky=E)
     user_input_path = Entry(app, width=50)
@@ -724,18 +738,25 @@ if __name__ == '__main__':
     purge_button = Button(app, text='Purge Results', command=check_yesno, bg='pink')
     purge_button.grid(row=40, column=4, padx=10, pady=10, sticky=E)
 
+    Label(app, text='User Name:').grid(row=50, column=2, padx=10, pady=10, sticky=E)
+    mapillary_user_name = Entry(app, width=20)
+    mapillary_user_name.grid(row=50, padx=10, pady=10, column=3, columnspan=3, sticky=W)
+    mapillary_check_button = Checkbutton(app, text="Mapillary Uploader", variable=mapillary_uploader_switch)
+    mapillary_check_button.grid(row=50, column=1, padx=10, pady=10, sticky=E)
+
     if not pm:
         author_email = 'mailto:guan-ling.wu@here.com'
     else:
         author_email = 'mailto:dashcam_tool_report@outlook.com'
 
     purge_button = Button(app, text='☺', command=lambda: webbrowser.open(author_email), bd=0)
-    purge_button.grid(row=50, column=5, padx=0, pady=0, sticky=E)
+    purge_button.grid(row=60, column=5, padx=0, pady=0, sticky=E)
 
     if os.path.exists('./config.ini'):
         init_config = open('./config.ini', mode='r')
         f = init_config.readlines()
-        if len(f) == 8:
+
+        if len(f) > 8:
             root = f[0].replace('\n', '')
             dest = f[1].replace('\n', '')
             res_selection.set(f[2].replace('\n', ''))
@@ -752,6 +773,12 @@ if __name__ == '__main__':
             extracting_video.set(int(f[5].replace('\n', '')))
             double_frame_rate.set(f[6].replace('\n', ''))
             pano_photo.set(int(f[7].replace('\n', '')))
+            mapillary_uploader_switch.set(int(f[8].replace('\n', '')))
+            if mapillary_uploader_switch.get() == 1:
+                mapillary_check_button.select()
+            else:
+                mapillary_check_button.deselect()
+            mapillary_uid = f[9].replace('\n', '')
         else:
             root = ''
             dest = ''
@@ -764,8 +791,11 @@ if __name__ == '__main__':
             audio_switch.select()
             double_frame_rate.set(FALSE)
             pano_photo.set(0)
+            mapillary_uploader_switch.set(0)
+            mapillary_uid = ''
         user_input_path.insert(0, root)
         dest_path.insert(0, dest)
+        mapillary_user_name.insert(0, mapillary_uid)
     else:
         open('./config.ini', mode='w').close()
         root = ''
@@ -779,4 +809,7 @@ if __name__ == '__main__':
         double_frame_rate.set(FALSE)
         user_input_path.insert(0, '')
         pano_photo.set(0)
+        mapillary_uploader_switch.set(0)
+        mapillary_uid = ''
+
     app.mainloop()
