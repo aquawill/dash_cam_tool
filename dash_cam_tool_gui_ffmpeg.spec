@@ -6,7 +6,7 @@ block_cipher = None
 a = Analysis(['dash_cam_tool_gui_ffmpeg.py'],
              pathex=['C:\\Users\\guanlwu\\Desktop\\Python_src'],
              binaries=[],
-             datas=[ ('./ffmpeg.exe', '.'), ('./exiftool.exe', '.') ],
+             datas=[ ('./ffmpeg.exe', '.'), ('./exiftool.exe', '.'), ('./py27/', './py27/') ],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -30,4 +30,4 @@ coll = COLLECT(exe,
                a.datas,
                strip=False,
                upx=True,
-               name='dash_cam_tool')
+name='dash_cam_tool')
