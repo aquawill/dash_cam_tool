@@ -241,7 +241,7 @@ def get_distance(lat_a, lon_a, lat_b, lon_b):
     return distance
 
 
-def gps_trace_iterator(trace_file_input, dfr):
+def gps_trace_iterator(trace_file_input, dfr, camera_orientation):
     output_array = []
     file_type = trace_file_input.name.split('.')[-1].lower()
     if file_type == 'nmea':
@@ -258,8 +258,15 @@ def gps_trace_iterator(trace_file_input, dfr):
                     msg_seg[5] = float(msg_seg[5][0:3]) + float(msg_seg[5][3:]) / 60  # lon
                 if msg_seg[6] == 'W':
                     msg_seg[3] *= -1
-                if msg_seg[8] == '':
+                if msg_seg[7] == '':  # speed
                     msg_seg[8] = '0'
+                if msg_seg[8] != '':  # bearing
+                    oriented_camera_direction = int(float(msg_seg[8])) + camera_orientation
+                    if oriented_camera_direction >= 360:
+                        oriented_camera_direction -= 360
+                    msg_seg[8] = oriented_camera_direction
+                else:
+                    msg_seg[8] = ''
                 output_array.append(msg_seg)
                 if dfr is True and len(output_array) > 1:  # Interpolation of the GPS trace
                     interpolating_array = gps_trace_interpolator(output_array)
@@ -309,7 +316,11 @@ def gps_trace_iterator(trace_file_input, dfr):
                         try:
                             if latA != latB or lonA != lonB:
                                 output_array[-2][7] = str(get_distance(latA, lonA, latB, lonB) * 3.6)
-                                output_array[-2][8] = float(getDegree(latA, lonA, latB, lonB))
+                                oriented_camera_direction = float(
+                                    getDegree(latA, lonA, latB, lonB)) + camera_orientation
+                                if oriented_camera_direction > 360:
+                                    oriented_camera_direction -= 360
+                                output_array[-2][8] = oriented_camera_direction
                         except Exception:
                             pass
                         if dfr is True and len(output_array) > 1:  # Interpolation of the GPS trace
@@ -318,7 +329,7 @@ def gps_trace_iterator(trace_file_input, dfr):
     return output_array
 
 
-def generate_kml_and_csv(rootdir, dfr):
+def generate_kml_and_csv(rootdir, dfr, camera_orientation):
     global merged_trace
     column_names = 'filename,latitude,longitude,speed_kmh,bearing,timestamp\n'
     if not pm:
@@ -331,11 +342,11 @@ def generate_kml_and_csv(rootdir, dfr):
         gps_file.write(column_names)
         # KML meta
         kml_meta_1 = (
-            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n<Document>\n ")
+            '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n')
         kml_file.write(kml_meta_1)
-        kml_file.write("<name>" + gps_trace_file_list[gps_file_index] + "</name>")
+        kml_file.write("<name>" + gps_trace_file_list[gps_file_index] + "</name>\n")
         kml_meta_2 = (
-            "<Style id=\"sn_pink-blank\"><IconStyle><scale>0.8</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/pink-blank.png</href></Icon><hotSpot x=\"32\" y=\"1\" xunits=\"pixels\" yunits=\"pixels\"/></IconStyle><ListStyle><ItemIcon><href>http://maps.google.com/mapfiles/kml/paddle/pink-blank-lv.png</href></ItemIcon></ListStyle></Style>\n<StyleMap id=\"msn_pink-blank\"><Pair><key>normal</key><styleUrl>#sn_pink-blank</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#sh_pink-blank</styleUrl></Pair></StyleMap>")
+            '<Style id="arrow_icon"><IconStyle><scale>1</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/track.png</href></Icon><hotSpot x="32" y="32" xunits="pixels" yunits="pixels"/></IconStyle></Style><Style id="idle_icon"><IconStyle><scale>1</scale><Icon><href>http://earth.google.com/images/kml-icons/track-directional/track-none.png</href></Icon><hotSpot x="32" y="32" xunits="pixels" yunits="pixels"/></IconStyle></Style>\n')
         kml_file.write(kml_meta_2)
         # iterate GPS trace
         for video_file_index in range(len(video_file_list)):
@@ -358,10 +369,14 @@ def generate_kml_and_csv(rootdir, dfr):
                                             encoding='utf-8')
             image_sn = 1
             if source_trace:
-                msg_array = gps_trace_iterator(source_trace, dfr)
+                msg_array = gps_trace_iterator(source_trace, dfr, camera_orientation)
                 for msg_seg in msg_array:
-                    bearing = str(int(float(msg_seg[8])))
-                    speed = msg_seg[7]
+                    bearing = None
+                    icon_style = '<styleUrl>#idle_icon</styleUrl><Style>{}</Style>'
+                    if msg_seg[8] != '':
+                        bearing = str(int(float(msg_seg[8])))
+                        icon_style = '<styleUrl>#arrow_icon</styleUrl><Style><IconStyle><heading>{}</heading></IconStyle></Style>'
+                    speed = msg_seg[7]  # knots
                     date_time_tuple = datetime.datetime.strptime(
                         msg_seg[9].split('.')[0] + msg_seg[1].split('.')[0] + str(
                             int(msg_seg[1].split('.')[1]) * 100000), '%d%m%y%H%M%S%f')
@@ -380,15 +395,17 @@ def generate_kml_and_csv(rootdir, dfr):
                             "<Placemark><description><![CDATA[<img src=\"./" + attrib[0] + "\" width=\"720\"/>" +
                             "<table><tr><th>filename</th><th>latitude</th><th>longitude</th><th>time_stamp_utc"
                             "</th><th>speed_kmh</th><th>bearing</th></tr><tr><th>" + attrib[0] + "</th><th>" +
-                            attrib[1] + "</th><th>" + attrib[2] + "</th><th>" + attrib[5] + "</th><th>" +
+                            attrib[1] + "</th><th>" + attrib[2] + "</th><th>" + attrib[5].replace('\n',
+                                                                                                  '') + "</th><th>" +
                             str(float(attrib[3]) * 1.852) + "</th><th>" + attrib[4] + "</th></tr></table>" +
                             "]]></description><LookAt><longitude>" + attrib[2] + "</longitude><latitude>" + attrib[1] +
                             "</latitude><altitude>0</altitude><gx:altitudeMode>relativeToSeaFloor"
-                            "</gx:altitudeMode><heading>" + attrib[4] + "</heading><tilt>45</tilt><range>"
+                            "</gx:altitudeMode><heading>" + attrib[4] + "</heading><tilt>0</tilt><range>"
                             + str(float(attrib[3]) * 1.852 * 4 + 20) +
-                            "</range></LookAt><styleUrl>#sn_pink-blank</styleUrl><Point>"
-                            "<gx:drawOrder>1</gx:drawOrder><coordinates>" +
-                            attrib[2] + "," + attrib[1] + ",0</coordinates></Point></Placemark>")
+                            "</range></LookAt><styleUrl>#arrow_icon</styleUrl>" + icon_style.format(
+                                attrib[4]) + "<Point>"
+                                             "<gx:drawOrder>1</gx:drawOrder><coordinates>" +
+                            attrib[2] + "," + attrib[1] + ",0</coordinates></Point></Placemark>\n")
                         image_file_abspath = os.path.join(image_folder_path, attrib[0])
                         if os.path.exists(image_file_abspath):
                             try:
@@ -438,11 +455,11 @@ def file_creation_time_modifier(file_name, time_stamp):
         CloseHandle(handler)
 
 
-def generate_dmo_trace(rootdir, format, dfr):
+def generate_dmo_trace(rootdir, format, dfr, camera_orientation):
     match_trace_file = None
     for creation_time_index in range(len(creation_time_list)):
-        menu_file = open(str(menu_file_list[creation_time_index]), mode='w', encoding='utf-8')
-        dmo_gps_file = open(str(dmo_trace_file_list[creation_time_index]), mode='w', encoding='utf-8')
+        menu_file = open(menu_file_list[creation_time_index], mode='w', encoding='utf-8')
+        dmo_gps_file = open(dmo_trace_file_list[creation_time_index], mode='w', encoding='utf-8')
         for dirPath, dirNames, fileNames in os.walk(rootdir):
             for fileName in fileNames:
                 filePath = (os.path.join(dirPath, fileName))
@@ -465,9 +482,12 @@ def generate_dmo_trace(rootdir, format, dfr):
                     if trace_file_creation_time == menu_file_list[video_file_index].replace('\\', '/').split('/')[-2]:
                         trace_file_input = open(trace_file_path, mode='r', encoding='utf8')
                         image_sn = 1
-                        msg_array = gps_trace_iterator(trace_file_input, dfr)
+
+                        msg_array = gps_trace_iterator(trace_file_input, dfr, camera_orientation)
                         for msg_seg in msg_array:
-                            bearing = str(int(float(msg_seg[8])))
+                            bearing = None
+                            if msg_seg[8] != '':
+                                bearing = str(int(float(msg_seg[8])))
                             speed = msg_seg[7]
                             date_time_tuple = datetime.datetime.strptime(
                                 msg_seg[9].split('.')[0] + msg_seg[1].split('.')[0], '%d%m%y%H%M%S')
@@ -557,7 +577,6 @@ def purge():
 
 def runner():
     print('Task Starts!\n----------------------------')
-
     dfr = double_frame_rate.get()
     ev = extracting_video.get()
     input_path = user_input_path.get().replace('\\', '/')
@@ -581,14 +600,30 @@ def runner():
     locate_files('kml', 'matchHtml', 'gpsHtmlPath', kml_file_list, output_path)
     locate_files('MENU', 'matchmenu', 'menupath', menu_file_list, output_path)
     locate_files('gps', 'match_dmogps', 'dmogps_path', dmo_trace_file_list, output_path)
-    generate_kml_and_csv(output_path, dfr)
-    if not pm:
-        generate_dmo_trace(output_path, mf, dfr)
+    # '↑ Front', '↓  Rear', '←  Left', '→ Right'
+    camera_orientation = 0
+    if camera_direction.get() == '→ Right':
+        camera_orientation = 90
+    elif camera_direction.get() == '↓  Rear':
+        camera_orientation = 180
+    elif camera_direction.get() == '←  Left':
+        camera_orientation = 270
+    elif camera_direction.get() == '↑ Front':
+        camera_orientation = 0
+
+    def trace_processor(output_path, mf, dfr, camera_orientation):
+        generate_kml_and_csv(output_path, dfr, camera_orientation)
+        if not pm:
+            generate_dmo_trace(output_path, mf, dfr, camera_orientation)
+
+    trace_processor(output_path, mf, dfr, camera_orientation)
     print('*** Process completed! ***\n')
     if os.path.exists(output_path + '/error_log.txt'):
         print('*** Some files couldn\'t be proccessed, Please check "error_log.txt". ***')
         os.system('notepad.exe ' + output_path + '/error_log.txt')
-    mapillary_uploader(input_path, mapillary_uid)
+    # Mapillary uploader
+    if mapillary_uploader_switch.get() == 1:
+        mapillary_uploader(input_path, mapillary_uid)
 
 
 if __name__ == '__main__':
@@ -671,23 +706,11 @@ if __name__ == '__main__':
 
     Label(app, text='Image Resolution:').grid(row=10, column=0, padx=10, pady=10, sticky=E)
 
-    if not pm:
-        Label(app, text='Menu File Format:').grid(row=20, padx=10, pady=10, sticky=E)
-        Radiobutton(app, text='Relative Path (RDFViewer)', variable=menu_format, value='1').grid(row=20, column=1,
-                                                                                                 sticky=W)
-        Radiobutton(app, text='Absolute Path (Atlas)', variable=menu_format, value='2').grid(row=20, column=2, sticky=W)
-
     Label(app, text='Extractions:').grid(row=2, padx=10, pady=10, sticky=E)
     Radiobutton(app, text='Video and GPS Trace', variable=extracting_video, value=1,
                 command=lambda: change_gps_state(1)).grid(row=2, column=1, sticky=W)
     Radiobutton(app, text='GPS Trace Only', variable=extracting_video, value=0,
                 command=lambda: change_gps_state(0)).grid(row=2, column=2, sticky=W)
-
-    Label(app, text='Data Rate:').grid(row=40, padx=10, pady=10, sticky=E)
-    fps_1 = Radiobutton(app, text='1 FPS (Default)', variable=double_frame_rate, value=FALSE)
-    fps_1.grid(row=40, column=1, sticky=W)
-    fps_2 = Radiobutton(app, text='2 FPS (Interpolation)', variable=double_frame_rate, value=TRUE)
-    fps_2.grid(row=40, column=2, sticky=W)
 
 
     def change_gps_state(value):
@@ -734,6 +757,24 @@ if __name__ == '__main__':
 
     go_button = Button(app, text='        GO!        ', command=prerun, bg='lightgreen')
     go_button.grid(row=40, column=3, padx=10, pady=10, sticky=E)
+
+    if not pm:
+        Label(app, text='Menu File Format:').grid(row=20, padx=10, pady=10, sticky=E)
+        Radiobutton(app, text='Relative Path (RDFViewer)', variable=menu_format, value='1').grid(row=20, column=1,
+                                                                                                 sticky=W)
+        Radiobutton(app, text='Absolute Path (Atlas)', variable=menu_format, value='2').grid(row=20, column=2, sticky=W)
+
+    Label(app, text='Orientation:').grid(row=20, column=3, sticky=E)
+    camera_direction = StringVar(app)
+    camera_direction.set('↑ Front')
+    direction_selection = OptionMenu(app, camera_direction, '↑ Front', '↓  Rear', '←  Left', '→ Right').grid(row=20,
+                                                                                                             column=4)
+
+    Label(app, text='Data Rate:').grid(row=40, padx=10, pady=10, sticky=E)
+    fps_1 = Radiobutton(app, text='1 FPS (Default)', variable=double_frame_rate, value=FALSE)
+    fps_1.grid(row=40, column=1, sticky=W)
+    fps_2 = Radiobutton(app, text='2 FPS (Interpolation)', variable=double_frame_rate, value=TRUE)
+    fps_2.grid(row=40, column=2, sticky=W)
 
     purge_button = Button(app, text='Purge Results', command=check_yesno, bg='pink')
     purge_button.grid(row=40, column=4, padx=10, pady=10, sticky=E)
