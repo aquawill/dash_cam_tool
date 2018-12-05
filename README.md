@@ -23,7 +23,7 @@ dash_cam_tool_170911
 
 dash_cam_tool_170914
 * Minor bugs fixed (GPS trace interpolation errors).
-* Add initial configuration storage to recall the previous setting.\
+* Add initial configuration storage to recall the previous setting.
 * Now frame capture will skip the corrupted video without quit.
 * Add logging for corrupted video.
 * Support GPX format trace and mp4 video input (for Garmin camcorder, run "run_gpx_mp4.bat").
@@ -44,7 +44,12 @@ dash_cam_tool_180123
 * Several minor bugs fixed.
 
 dash_cam_tool_v181023
-* Fix miscellaneous issues.
+* Add camera direction override function.
+* Fix GPS trace value extraction issues.
+* Improved KML style to show the direction of camera.
 
 dash_cam_tool_v181127
+* Integrated Mapillary uploader (with Python 2.7 environment)
+
+dash_cam_tool_v181205
 * Integrated Mapillary uploader (with Python 2.7 environment)
