@@ -52,4 +52,6 @@ dash_cam_tool_v181127
 * Integrated Mapillary uploader (with Python 2.7 environment)
 
 dash_cam_tool_v181205
-* Integrated Mapillary uploader (with Python 2.7 environment)
+*  Add camera direction override function.
+*  Fix GPS trace value extraction issues.
+*  Improved KML style to show the direction of camera.
