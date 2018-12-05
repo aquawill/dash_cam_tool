@@ -4,7 +4,6 @@
     <list default="true" id="9f1f2e67-3080-423a-9181-46657dc8cda1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="608" column="30" lean-forward="true" selection-start-line="608" selection-start-column="30" selection-end-line="608" selection-end-column="30" />
+            <state relative-caret-position="706">
+              <caret line="624" column="44" lean-forward="true" selection-start-line="624" selection-start-column="44" selection-end-line="624" selection-end-column="44" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -210,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543209841449</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1. Add camera direction override function.&#10;2. Fix GPS trace value extraction issues.&#10;3. Improved KML style to show the direction of camera.">
+      <created>1543990868008</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1543990868008</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -238,7 +244,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding Mapillary uploader (mapillary tools)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding Mapillary uploader (mapillary tools)" />
+    <MESSAGE value="1. Add camera direction override function.&#10;2. Fix GPS trace value extraction issues.&#10;3. Improved KML style to show the direction of camera." />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Add camera direction override function.&#10;2. Fix GPS trace value extraction issues.&#10;3. Improved KML style to show the direction of camera." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/[DEPRECATED]dash_cam_tool.py">
@@ -264,8 +271,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="608" column="30" lean-forward="true" selection-start-line="608" selection-start-column="30" selection-end-line="608" selection-end-column="30" />
+        <state relative-caret-position="706">
+          <caret line="624" column="44" lean-forward="true" selection-start-line="624" selection-start-column="44" selection-end-line="624" selection-end-column="44" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
