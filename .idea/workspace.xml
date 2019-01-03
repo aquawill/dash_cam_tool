@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f1f2e67-3080-423a-9181-46657dc8cda1" name="Default Changelist" comment="">
+    <list default="true" id="9f1f2e67-3080-423a-9181-46657dc8cda1" name="Default Changelist" comment="1. Add camera direction override function.&#10;2. Fix GPS trace value extraction issues.&#10;3. Improved KML style to show the direction of camera.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/COLLECT-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/COLLECT-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/EXE-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PKG-00.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/dash_cam_tool.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/dash_cam_tool.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/warn-dash_cam_tool_gui_ffmpeg.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/warn-dash_cam_tool_gui_ffmpeg.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/xref-dash_cam_tool_gui_ffmpeg.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/xref-dash_cam_tool_gui_ffmpeg.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui.cht" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui.eng" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="706">
-              <caret line="624" column="44" lean-forward="true" selection-start-line="624" selection-start-column="44" selection-end-line="624" selection-end-column="44" />
+            <state relative-caret-position="251">
+              <caret line="527" column="20" selection-start-line="527" selection-start-column="20" selection-end-line="527" selection-end-column="20" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -26,10 +39,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compile_dash_cam_tool_gui.bat">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+            <state relative-caret-position="162">
+              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -70,6 +97,7 @@
       <find>camera_orientation</find>
       <find>original_camera_direction</find>
       <find>sn_pink-blank</find>
+      <find>python27</find>
     </findStrings>
     <replaceStrings>
       <replace>mapillary_check_button</replace>
@@ -121,6 +149,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,13 +160,17 @@
             <path>
               <item name="dash_cam_tool" type="b2602c69:ProjectViewProjectNode" />
               <item name="dash_cam_tool" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dash_cam_tool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dash_cam_tool" type="462c0819:PsiDirectoryNode" />
               <item name="py27" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -216,7 +249,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543990868008</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="1. Add camera direction override function.&#10;2. Fix GPS trace value extraction issues.&#10;3. Improved KML style to show the direction of camera.">
+      <created>1543990893191</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1543990893191</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1. Add camera direction override function.&#10;2. Fix GPS trace value extraction issues.&#10;3. Improved KML style to show the direction of camera.">
+      <created>1543991233389</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1543991233389</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -234,7 +281,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.16176471" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32647058" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -264,15 +311,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        <state relative-caret-position="162">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/compile_dash_cam_tool_gui.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="624" column="44" lean-forward="true" selection-start-line="624" selection-start-column="44" selection-end-line="624" selection-end-column="44" />
+        <state relative-caret-position="251">
+          <caret line="527" column="20" selection-start-line="527" selection-start-column="20" selection-end-line="527" selection-end-column="20" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

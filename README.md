@@ -47,4 +47,7 @@ dash_cam_tool_v181023
 * Fix miscellaneous issues.
 
 dash_cam_tool_v181127
-* Integrated Mapillary uploader (with Python 2.7 environment)
+* Integrated Mapillary uploader (with Python 2.7 environment, bigger size).
+
+dash_cam_tool_v190103
+* Fix Mapillary Uploader issue.
