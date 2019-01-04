@@ -13,10 +13,10 @@
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/dash_cam_tool.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/dash_cam_tool.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/warn-dash_cam_tool_gui_ffmpeg.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/warn-dash_cam_tool_gui_ffmpeg.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/xref-dash_cam_tool_gui_ffmpeg.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/xref-dash_cam_tool_gui_ffmpeg.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compile_dash_cam_tool_gui.bat" beforeDir="false" afterPath="$PROJECT_DIR$/compile_dash_cam_tool_gui.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui.cht" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui.eng" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="527" column="20" selection-start-line="527" selection-start-column="20" selection-end-line="527" selection-end-column="20" />
+            <state relative-caret-position="306">
+              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -40,14 +40,18 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/compile_dash_cam_tool_gui.bat">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="17" selection-start-column="17" selection-end-column="17" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
+              <caret line="8" column="97" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -98,6 +102,9 @@
       <find>original_camera_direction</find>
       <find>sn_pink-blank</find>
       <find>python27</find>
+      <find>ffmpeg</find>
+      <find>exif</find>
+      <find>mapillary</find>
     </findStrings>
     <replaceStrings>
       <replace>mapillary_check_button</replace>
@@ -113,13 +120,14 @@
         <option value="$PROJECT_DIR$/upload_mapillary.py" />
         <option value="$PROJECT_DIR$/config.ini" />
         <option value="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec" />
+        <option value="$PROJECT_DIR$/compile_dash_cam_tool_gui.bat" />
         <option value="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-4" />
-    <option name="width" value="487" />
+    <option name="width" value="488" />
     <option name="height" value="584" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -149,7 +157,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -162,15 +169,11 @@
               <item name="dash_cam_tool" type="462c0819:PsiDirectoryNode" />
               <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="dash_cam_tool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash_cam_tool" type="462c0819:PsiDirectoryNode" />
-              <item name="py27" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -267,23 +270,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <frame x="-6" y="-6" width="1693" height="1023" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19283456" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1925166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32973504" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32843137" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3275862" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32647058" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3264368" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.36666667" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -302,13 +304,6 @@
     <entry file="file://$PROJECT_DIR$/py27/NEWS.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -317,12 +312,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/compile_dash_cam_tool_gui.bat">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="97" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="527" column="20" selection-start-line="527" selection-start-column="20" selection-end-line="527" selection-end-column="20" />
+        <state relative-caret-position="306">
+          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

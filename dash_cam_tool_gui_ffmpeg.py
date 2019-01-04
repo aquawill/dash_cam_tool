@@ -524,18 +524,18 @@ def generate_dmo_trace(rootdir, format, dfr, camera_orientation):
 def mapillary_uploader(image_path, uid):
     print('----------------------------')
     print('Start uploading to Mapillary')
-    python27_runtime_path = ''
-    mapillary_tools_path = ''
-    if os.path.exists(os.path.join(os.getcwd(), 'py27')):
-        python27_runtime_path = os.path.join(os.getcwd(), 'py27/python.exe').replace('\\', '/')
-        mapillary_tools_path = os.path.join(os.getcwd(), 'py27/Scripts/mapillary_tools').replace('\\', '/')
-    elif os.path.exists(os.path.join(os.getcwd(), 'dash_cam_tool/py27')):
-        python27_runtime_path = os.path.join(os.getcwd(), 'dash_cam_tool/py27/python.exe').replace('\\', '/')
-        mapillary_tools_path = os.path.join(os.getcwd(), 'dash_cam_tool/py27/Scripts/mapillary_tools').replace('\\', '/')
-    mapillary_full_command = '{} {} process_and_upload --import_path "{}/images/" --user_name "{}"'.format(
-        python27_runtime_path, mapillary_tools_path, image_path, uid)
-    print(mapillary_full_command)
-    os.system(mapillary_full_command)
+    mapillary_tool_path = ''
+    for dirPath, dirName, fileNames in os.walk(os.getcwd()):
+        for fileName in fileNames:
+            if fileName == 'mapillary_tools.exe':
+                print(dirPath, fileName)
+                mapillary_tool_path = os.path.join(dirPath, fileName)
+                break
+    mapillary_command = '{} process_and_upload --rerun --import_path "{}/images/" --user_name "{}"'.format(
+        mapillary_tool_path, image_path, uid)
+    print(mapillary_command)
+    os.system(mapillary_command)
+
 
 
 def quit():
