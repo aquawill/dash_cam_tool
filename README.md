@@ -58,3 +58,6 @@ dash_cam_tool_v181205
 
 dash_cam_tool_v190103
 *  Fix Mapillary Uploader issue.
+
+dash_cam_tool_v190103
+*  Fix Mapillary Uploader issue.
