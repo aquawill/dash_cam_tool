@@ -2,21 +2,339 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f1f2e67-3080-423a-9181-46657dc8cda1" name="Default Changelist" comment="1. Add camera direction override function.&#10;2. Fix GPS trace value extraction issues.&#10;3. Improved KML style to show the direction of camera.">
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/PIL/_imaging.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/PIL/_imagingtk.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/PIL/_webp.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_contextvars.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_queue.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/libcrypto-1_1-x64.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/libopenblas.IPBC74C7KURV7CB2PKT5Z5FNR3SIBV4J.gfortran-win_amd64.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/libssl-1_1-x64.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/core/_multiarray_tests.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/core/_multiarray_umath.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/linalg/_umath_linalg.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/linalg/lapack_lite.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/random/mtrand.cp37-win_amd64.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/python37.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/pythoncom37.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/pywintypes37.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Punta_Arenas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Atyrau" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Famagusta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Yangon" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Saratov" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dash_cam_tool_v190523.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dash_cam_tool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dash_cam_tool.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Analysis-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/COLLECT-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/COLLECT-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/EXE-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PKG-00.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PKG-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.pyz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Tree-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Tree-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Tree-01.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/Tree-01.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/base_library.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/dash_cam_tool.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/dash_cam_tool.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/warn-dash_cam_tool_gui_ffmpeg.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/warn-dash_cam_tool_gui_ffmpeg.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/xref-dash_cam_tool_gui_ffmpeg.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/dash_cam_tool_gui_ffmpeg/xref-dash_cam_tool_gui_ffmpeg.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile_dash_cam_tool_gui.bat" beforeDir="false" afterPath="$PROJECT_DIR$/compile_dash_cam_tool_gui.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec" beforeDir="false" afterPath="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/config.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/Include/pyconfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/Include/pyconfig.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/PIL/_imaging.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/PIL/_imagingtk.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/PIL/_webp.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/VCRUNTIME140.dll" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/VCRUNTIME140.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_bz2.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_bz2.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_ctypes.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_ctypes.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_decimal.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_decimal.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_distutils_findvs.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_elementtree.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_elementtree.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_hashlib.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_hashlib.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_lzma.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_lzma.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_multiprocessing.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_multiprocessing.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_socket.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_socket.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_ssl.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_ssl.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_tkinter.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_tkinter.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/_win32sysloader.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/_win32sysloader.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/dash_cam_tool.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/dash_cam_tool.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/lib2to3/Grammar3.6.7.final.0.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/lib2to3/Grammar3.7.2.final.0.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/lib2to3/PatternGrammar3.6.7.final.0.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/lib2to3/PatternGrammar3.7.2.final.0.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/msvcp140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/core/_multiarray_tests.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/core/multiarray.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/core/umath.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/fft/fftpack_lite.cp36-win_amd64.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/fft/fftpack_lite.cp37-win_amd64.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/linalg/_umath_linalg.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/linalg/lapack_lite.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/numpy/random/mtrand.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/pyexpat.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/pyexpat.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/python36.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/pythoncom36.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/pywintypes36.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/scipy/_lib/_ccallback_c.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/scipy/_lib/_fpumode.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/scipy/_lib/messagestream.cp36-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/select.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/select.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/auto.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/auto.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/history.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/history.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/init.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/init.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Accra" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Accra" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Bissau" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Bissau" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Ceuta" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Ceuta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/El_Aaiun" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/El_Aaiun" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Juba" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Juba" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Khartoum" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Khartoum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Monrovia" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Monrovia" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Nairobi" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Nairobi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Windhoek" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Africa/Windhoek" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Adak" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Adak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Anchorage" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Anchorage" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Araguaina" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Araguaina" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Buenos_Aires" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Buenos_Aires" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Catamarca" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Catamarca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Cordoba" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Cordoba" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Jujuy" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Jujuy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/La_Rioja" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/La_Rioja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Mendoza" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Mendoza" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Rio_Gallegos" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Rio_Gallegos" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Salta" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Salta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/San_Juan" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/San_Juan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/San_Luis" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/San_Luis" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Tucuman" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Tucuman" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Ushuaia" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Argentina/Ushuaia" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Asuncion" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Asuncion" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Bahia" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Bahia" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Belem" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Belem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Belize" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Belize" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Boa_Vista" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Boa_Vista" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Bogota" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Bogota" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Campo_Grande" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Campo_Grande" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Caracas" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Caracas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Cayenne" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Cayenne" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Cuiaba" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Cuiaba" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Curacao" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Curacao" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Danmarkshavn" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Danmarkshavn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Detroit" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Detroit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Eirunepe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Eirunepe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Fortaleza" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Fortaleza" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Godthab" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Godthab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Grand_Turk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Grand_Turk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Guayaquil" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Guayaquil" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Guyana" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Guyana" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Juneau" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Juneau" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/La_Paz" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/La_Paz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Lima" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Lima" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Los_Angeles" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Los_Angeles" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Maceio" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Maceio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Manaus" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Manaus" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Metlakatla" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Metlakatla" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Miquelon" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Miquelon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Montevideo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Montevideo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Nome" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Nome" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Noronha" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Noronha" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Paramaribo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Paramaribo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Port-au-Prince" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Port-au-Prince" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Porto_Velho" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Porto_Velho" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Recife" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Recife" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Rio_Branco" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Rio_Branco" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Santarem" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Santarem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Santiago" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Santiago" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Santo_Domingo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Santo_Domingo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Sao_Paulo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Sao_Paulo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Scoresbysund" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Scoresbysund" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Sitka" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Sitka" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Tijuana" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Tijuana" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Yakutat" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/America/Yakutat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Casey" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Casey" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Davis" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Davis" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/DumontDUrville" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/DumontDUrville" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Macquarie" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Macquarie" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Mawson" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Mawson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Palmer" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Palmer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Rothera" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Rothera" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Syowa" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Syowa" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Troll" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Troll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Vostok" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Antarctica/Vostok" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Anadyr" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Anadyr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Aqtau" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Aqtau" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ashgabat" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ashgabat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Baghdad" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Baghdad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Baku" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Baku" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Bangkok" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Bangkok" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Bishkek" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Bishkek" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Brunei" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Brunei" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Chita" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Chita" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Choibalsan" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Choibalsan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Colombo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Colombo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dhaka" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dhaka" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dili" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dili" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dubai" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dubai" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dushanbe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Dushanbe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Gaza" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Gaza" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Hebron" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Hebron" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ho_Chi_Minh" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ho_Chi_Minh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Hovd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Hovd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Irkutsk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Irkutsk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Jakarta" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Jakarta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Jayapura" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Jayapura" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kabul" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kabul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kamchatka" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kamchatka" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Karachi" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Karachi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kathmandu" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kathmandu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Khandyga" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Khandyga" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kolkata" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kolkata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Krasnoyarsk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Krasnoyarsk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kuala_Lumpur" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kuala_Lumpur" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kuching" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Kuching" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Macau" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Macau" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Magadan" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Magadan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Makassar" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Makassar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Manila" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Manila" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Omsk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Omsk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Oral" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Oral" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Pontianak" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Pontianak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Pyongyang" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Pyongyang" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Qatar" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Qatar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Rangoon" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Rangoon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Riyadh" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Riyadh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Sakhalin" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Sakhalin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Samarkand" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Samarkand" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Seoul" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Seoul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Singapore" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Singapore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Srednekolymsk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Srednekolymsk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Taipei" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Taipei" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tashkent" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tashkent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tbilisi" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tbilisi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tehran" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tehran" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Thimphu" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Thimphu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tokyo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Tokyo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ulaanbaatar" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ulaanbaatar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Urumqi" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Urumqi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ust-Nera" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Ust-Nera" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Vladivostok" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Vladivostok" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Yakutsk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Yakutsk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Yekaterinburg" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Yekaterinburg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Yerevan" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Asia/Yerevan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Azores" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Azores" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Canary" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Canary" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Cape_Verde" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Cape_Verde" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Madeira" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Madeira" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Reykjavik" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Reykjavik" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/South_Georgia" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/South_Georgia" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Stanley" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Atlantic/Stanley" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Australia/Eucla" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Australia/Eucla" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Australia/Lord_Howe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Australia/Lord_Howe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+1" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+10" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+11" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+11" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+12" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+2" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+3" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+4" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+5" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+6" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+7" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+8" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+9" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT+9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-1" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-10" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-11" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-11" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-12" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-13" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-13" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-14" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-14" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-2" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-3" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-4" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-5" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-6" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-7" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-8" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-9" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Etc/GMT-9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Amsterdam" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Amsterdam" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Dublin" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Dublin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Istanbul" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Istanbul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Kaliningrad" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Kaliningrad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Kirov" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Kirov" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Madrid" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Madrid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Malta" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Malta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Minsk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Minsk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Moscow" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Moscow" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Rome" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Rome" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Samara" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Samara" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Ulyanovsk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Ulyanovsk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Volgograd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Volgograd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Zaporozhye" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Europe/Zaporozhye" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Chagos" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Chagos" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Christmas" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Christmas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Cocos" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Cocos" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Kerguelen" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Kerguelen" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Mahe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Mahe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Maldives" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Maldives" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Mauritius" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Mauritius" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Reunion" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Indian/Reunion" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Apia" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Apia" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Bougainville" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Bougainville" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Chatham" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Chatham" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Chuuk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Chuuk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Easter" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Easter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Efate" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Efate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Enderbury" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Enderbury" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Fakaofo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Fakaofo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Fiji" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Fiji" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Funafuti" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Funafuti" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Galapagos" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Galapagos" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Gambier" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Gambier" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Guadalcanal" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Guadalcanal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Kiritimati" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Kiritimati" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Kosrae" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Kosrae" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Kwajalein" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Kwajalein" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Majuro" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Majuro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Marquesas" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Marquesas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Nauru" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Nauru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Niue" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Niue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Norfolk" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Norfolk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Noumea" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Noumea" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Pago_Pago" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Pago_Pago" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Palau" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Palau" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Pitcairn" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Pitcairn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Pohnpei" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Pohnpei" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Port_Moresby" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Port_Moresby" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Rarotonga" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Rarotonga" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Tahiti" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Tahiti" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Tarawa" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Tarawa" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Tongatapu" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Tongatapu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Wake" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Wake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Wallis" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl/tzdata/Pacific/Wallis" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tcl86t.dll" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tcl86t.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/console.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/console.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/fontchooser.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/fontchooser.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/listbox.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/listbox.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/menu.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/menu.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/pkgIndex.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/pkgIndex.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/text.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/text.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/tk.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/tk.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/tkfbox.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/tkfbox.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/altTheme.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/altTheme.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/clamTheme.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/clamTheme.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/classicTheme.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/classicTheme.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/combobox.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/combobox.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/defaults.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/defaults.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/vistaTheme.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/ttk/vistaTheme.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk/xmfbox.tcl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk/xmfbox.tcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/tk86t.dll" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/tk86t.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/unicodedata.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/unicodedata.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/win32api.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/win32api.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/win32com/shell/shell.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/win32com/shell/shell.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/win32file.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/win32file.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/win32pdh.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/win32pdh.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/win32trace.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/win32trace.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/win32ui.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/win32ui.pyd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/dash_cam_tool/win32wnet.pyd" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dash_cam_tool/win32wnet.pyd" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +347,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+            <state relative-caret-position="476">
+              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -50,7 +368,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
+            <state relative-caret-position="136">
               <caret line="8" column="97" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
             </state>
           </provider>
@@ -59,8 +377,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            <state relative-caret-position="102">
+              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -76,39 +394,47 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>upload_mapillary</find>
-      <find>extracting_audio</find>
-      <find>extracting_video</find>
-      <find>change_gps_state</find>
-      <find>dest_path</find>
-      <find>root</find>
-      <find>create_dir</find>
-      <find>mapillary_switch</find>
-      <find>init_config</find>
-      <find>pano_photo</find>
-      <find>mapillary_user_name</find>
-      <find>mapillary_uid</find>
-      <find>capture_frames</find>
-      <find>menu</find>
-      <find>StringVar</find>
-      <find>msg_seg</find>
-      <find>3.</find>
-      <find>getDegree</find>
-      <find>generate_dmo_trace</find>
-      <find>mapillary_uploader</find>
-      <find>mapillary_uploader_switch</find>
-      <find>gps_trace_iterator</find>
-      <find>camera_orientation</find>
-      <find>original_camera_direction</find>
-      <find>sn_pink-blank</find>
-      <find>python27</find>
-      <find>ffmpeg</find>
-      <find>exif</find>
-      <find>mapillary</find>
+      <find>gps_trace_file_list</find>
+      <find>csv_file_name_list</find>
+      <find>pm</find>
+      <find>trace_list_input</find>
+      <find>video_file_list</find>
+      <find>fps</find>
+      <find>frame rate</find>
+      <find>data rate</find>
+      <find>row=40, column=4</find>
+      <find>row=40</find>
+      <find>fps_2</find>
+      <find>double_frame_rate.set(FALSE)</find>
+      <find>double_frame_rate</find>
+      <find>time_lapse_Interval</find>
+      <find>dfr</find>
+      <find>gps trace only</find>
+      <find>interval_input</find>
+      <find>interval</find>
+      <find>frame_interval</find>
+      <find>output_array</find>
+      <find>time lapse</find>
+      <find>trace_file_input.readlines()</find>
+      <find>trace_file_input</find>
+      <find>doublevar</find>
+      <find>frame_rate.get()</find>
+      <find>fr</find>
+      <find>go</find>
+      <find>prerun</find>
+      <find>lapse</find>
+      <find>print(fr</find>
     </findStrings>
     <replaceStrings>
       <replace>mapillary_check_button</replace>
       <replace>arrow_icon</replace>
+      <replace>get_degree</replace>
+      <replace>point_longitude_2</replace>
+      <replace>trace_list_input</replace>
+      <replace>kml_list_output</replace>
+      <replace>csv_list_output</replace>
+      <replace>public_release</replace>
+      <replace>gps_msg_seg_list</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -118,17 +444,20 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/upload_mapillary.py" />
-        <option value="$PROJECT_DIR$/config.ini" />
         <option value="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec" />
         <option value="$PROJECT_DIR$/compile_dash_cam_tool_gui.bat" />
+        <option value="$PROJECT_DIR$/GpsProcessor.py" />
+        <option value="$PROJECT_DIR$/GpsTraceProcessor.py" />
+        <option value="$PROJECT_DIR$/GpsTraceInterpolator.py" />
+        <option value="$PROJECT_DIR$/config.ini" />
         <option value="$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-4" />
-    <option name="width" value="488" />
-    <option name="height" value="584" />
+    <option name="x" value="-2" />
+    <option name="width" value="244" />
+    <option name="height" value="292" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -177,7 +506,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Python_src" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -270,25 +600,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1693" height="1023" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1925166" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20682302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32973504" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3275862" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27900288" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39980826" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3264368" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32981783" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32598275" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.36666667" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JSON Viewer" order="3" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -301,16 +632,9 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/upload_mapillary.py" />
-    <entry file="file://$PROJECT_DIR$/py27/NEWS.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/py27/NEWS.txt" />
+    <entry file="file://$PROJECT_DIR$/GpsProcessor.py" />
+    <entry file="file://$PROJECT_DIR$/GpsTraceInterpolator.py" />
     <entry file="file://$PROJECT_DIR$/compile_dash_cam_tool_gui.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -320,15 +644,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.spec">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="136">
           <caret line="8" column="97" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        <state relative-caret-position="476">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

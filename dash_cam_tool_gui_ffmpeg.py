@@ -5,17 +5,17 @@ import subprocess
 import threading
 import time
 import webbrowser
-from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 from tkinter import *
 from tkinter import filedialog, messagebox
-from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
 
 import gpxpy
 import piexif
 from PIL import Image  # pillow==4.0.0
 from ffmpy import FFmpeg
+from math import radians, cos, sin, degrees, atan2, atan, tan, acos
+from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
 
-pm = False
+pm = True
 v_file_formats = ['mpg', 'avi', 'mp4', 'mov', 'wmv']
 t_file_formats = ['nmea', 'gpx']
 
@@ -29,7 +29,7 @@ def create_dir(rootdir):
             os.mkdir(rootdir + '/audio/', mode=777)
 
 
-def capture_frames(input, output, res, v, a, dfr, ph):
+def capture_frames(input, output, res, v, a, frame_interval, ph):
     global input_video_file_path
     app.destroy()
     for dirPath, dirNames, fileNames in os.walk(input):
@@ -47,12 +47,14 @@ def capture_frames(input, output, res, v, a, dfr, ph):
                     if os.path.basename(filePath).split('.')[-1].lower() == file_type:
                         input_video_file_path = filePath
             if input_video_file_path:
-                full_time = time.strftime('%m_%d_%Y', time.gmtime(os.path.getctime(input_video_file_path)))
+                full_time = time.strftime('%m_%d_%Y',
+                                          time.gmtime(os.path.getctime(input_video_file_path)))
                 if not pm:
                     creation_time = full_time[:6] + full_time[8:]
                 else:
                     creation_time = full_time
-                dmo_gps_file_name = time.strftime('%Y%m%d', time.gmtime(os.path.getctime(input_video_file_path)))
+                dmo_gps_file_name = time.strftime('%Y%m%d', time.gmtime(
+                    os.path.getctime(input_video_file_path)))
                 if not pm:
                     if not dmo_gps_file_name in creation_time_list:
                         creation_time_list.append(dmo_gps_file_name)
@@ -60,31 +62,34 @@ def capture_frames(input, output, res, v, a, dfr, ph):
                     creation_time_list.append(dmo_gps_file_name)
                 if not pm:
                     if not os.path.exists(output + '/gps/' + dmo_gps_file_name + '.gps'):
-                        open(output + '/gps/' + dmo_gps_file_name + '.gps', mode='w', encoding='utf8')
+                        open(output + '/gps/' + dmo_gps_file_name + '.gps', mode='w',
+                             encoding='utf8')
                 if not os.path.exists(output + '/images/'):
                     os.mkdir(output + '/images/', mode=777)
                 if not os.path.exists(output + '/images/' + creation_time + '/'):
                     os.mkdir(output + '/images/' + creation_time + '/', mode=777)
                 pic_path = '{}/images/{}/{}'.format(output, creation_time,
-                                                    str(os.path.relpath(input_video_file_path, os.path.abspath(input))))
+                                                    str(os.path.relpath(input_video_file_path,
+                                                                        os.path.abspath(input))))
                 if not os.path.exists(pic_path.split('.')[0] + '/'):
                     os.mkdir(pic_path.split('.')[0] + '/', mode=777)
                 video_file_list.append(input_video_file_path)
                 # making trace files
-                open('{}/{}.csv'.format(pic_path.split('.')[0], video_file_name.split('.')[0]), mode='w',
+                open('{}/{}.csv'.format(pic_path.split('.')[0], video_file_name.split('.')[0]),
+                     mode='w',
                      encoding='utf-8')
-                open('{}/{}.kml'.format(pic_path.split('.')[0], video_file_name.split('.')[0]), mode='w',
+                open('{}/{}.kml'.format(pic_path.split('.')[0], video_file_name.split('.')[0]),
+                     mode='w',
                      encoding='utf-8')
                 if not pm:
-                    open('{}/images/{}/MENU'.format(output, creation_time), mode='w', encoding='utf-8')
-                if dfr is True:
-                    input_fps = 2
-                else:
-                    input_fps = 1
+                    open('{}/images/{}/MENU'.format(output, creation_time), mode='w',
+                         encoding='utf-8')
+                input_fps = 1 / float(frame_interval);
                 ff = FFmpeg(
                     inputs={input_video_file_path: None},
-                    outputs={'{}/{}-%d.jpg'.format(os.path.join(output, '/images/', pic_path.split('.')[0]),
-                                                   str(fileName.split('.')[0])):
+                    outputs={'{}/{}-%d.jpg'.format(
+                        os.path.join(output, '/images/', pic_path.split('.')[0]),
+                        str(fileName.split('.')[0])):
                                  '-vf fps={} {} -qscale:v 1 -loglevel -8'.format(input_fps, res)})
                 ff_a = FFmpeg(
                     inputs={input_video_file_path: None},
@@ -94,7 +99,8 @@ def capture_frames(input, output, res, v, a, dfr, ph):
                 t_a = threading.Thread(target=ff_a.run)
                 if v == 1:
                     try:
-                        print('{} --> Extracting {}'.format(time.asctime(), input_video_file_path), end='')
+                        print('{} --> Extracting {}'.format(time.asctime(), input_video_file_path),
+                              end='')
                         if ph == 1:
                             print(' (Panorama)')
                         else:
@@ -109,11 +115,14 @@ def capture_frames(input, output, res, v, a, dfr, ph):
                         video_ctime = datetime.datetime.utcfromtimestamp(
                             os.path.getctime(input_video_file_path)).timestamp()
                         e_threads = []
-                        for fileNames in os.walk(os.path.join(output, '/images/', pic_path.split('.')[0])):
+                        for fileNames in os.walk(
+                                os.path.join(output, '/images/', pic_path.split('.')[0])):
                             for fileName in fileNames:
                                 for image_file in fileName:
-                                    image_file = os.path.join(output, '/images/', pic_path.split('.')[0], image_file)
-                                    if os.path.isfile(image_file) and str(image_file).split('.')[1] == 'jpg':
+                                    image_file = os.path.join(output, '/images/',
+                                                              pic_path.split('.')[0], image_file)
+                                    if os.path.isfile(image_file) and str(image_file).split('.')[
+                                        1] == 'jpg':
                                         def post_process(input_image):
                                             if ph == 1:
                                                 img = Image.open(input_image)
@@ -128,15 +137,20 @@ def capture_frames(input, output, res, v, a, dfr, ph):
                                                                '-CroppedAreaLeftPixels=0 -CroppedAreaTopPixels=0 {} ' \
                                                                '-overwrite_original'.format(
                                                     img_w, img_h, img_w, img_h, input_image)
-                                                print('{} --> Generating Panorama: {}'.format(time.asctime(),
-                                                                                              input_image))
-                                                subprocess.call(exiftool_cmd, stdout=subprocess.PIPE,
+                                                print('{} --> Generating Panorama: {}'.format(
+                                                    time.asctime(),
+                                                    input_image))
+                                                subprocess.call(exiftool_cmd,
+                                                                stdout=subprocess.PIPE,
                                                                 stderr=subprocess.PIPE)
                                             time_offset = (float(
-                                                str(input_image).split('.')[0].split('-')[-1]) - 1) / input_fps
-                                            file_creation_time_modifier(input_image, video_ctime + time_offset)
+                                                str(input_image).split('.')[0].split('-')[
+                                                    -1]) - 1) / input_fps
+                                            file_creation_time_modifier(input_image,
+                                                                        video_ctime + time_offset)
 
-                                        t_e = threading.Thread(target=lambda: post_process(image_file))
+                                        t_e = threading.Thread(
+                                            target=lambda: post_process(image_file))
                                         e_threads.append(t_e)
                                         for t in e_threads:
                                             try:
@@ -154,7 +168,8 @@ def capture_frames(input, output, res, v, a, dfr, ph):
                         # print('* Log added --> ' + output + '/error_log.txt\n')
                         error_log = open(output + '/error_log.txt', mode='a', encoding='utf-8')
                         error_log.write(Exception.with_traceback() + '\n')
-                        error_log.write('* {}\t{} seems corrupted.\n'.format(str(time.asctime()), input))
+                        error_log.write(
+                            '* {}\t{} seems corrupted.\n'.format(str(time.asctime()), input))
                         pass
 
 
@@ -241,9 +256,15 @@ def get_distance(lat_a, lon_a, lat_b, lon_b):
     return distance
 
 
-def gps_trace_iterator(trace_file_input, dfr, camera_orientation):
+def gps_trace_iterator(trace_file_input, fr, camera_orientation):
+    data_rate = 0
+    if fr >= 1:
+        data_rate = int(fr)
+    else:
+        data_rate = 1
     output_array = []
     file_type = trace_file_input.name.split('.')[-1].lower()
+    line_number = 0
     if file_type == 'nmea':
         for nmea_line in trace_file_input.readlines():
             if nmea_line[0:6] == '$GPRMC':
@@ -267,8 +288,10 @@ def gps_trace_iterator(trace_file_input, dfr, camera_orientation):
                     msg_seg[8] = oriented_camera_direction
                 else:
                     msg_seg[8] = ''
-                output_array.append(msg_seg)
-                if dfr is True and len(output_array) > 1:  # Interpolation of the GPS trace
+                if line_number % data_rate == 0:
+                    output_array.append(msg_seg)
+                line_number += 1
+                if fr == 0.5 and len(output_array) > 1:  # Interpolation of the GPS trace
                     interpolating_array = gps_trace_interpolator(output_array)
                     output_array.insert(-1, interpolating_array)
     elif file_type == 'gpx':
@@ -294,42 +317,48 @@ def gps_trace_iterator(trace_file_input, dfr, camera_orientation):
                     sec = points.time.strftime("%S")
                     time_str = str(float('{}{}{}'.format(hour, minute, sec)))
                     date = ('{}{}{}'.format(date, month, year))
-                    output_array.append(
-                        ['GPX', time_str, 'A', abs(lat), ns, abs(lon), ew, '0.0', '0', date, '', '', '\n'])
-                    if len(output_array) > 1:
-                        if output_array[-2][4] == 'S':
-                            latA = output_array[-2][3] * -1
-                        else:
-                            latA = output_array[-2][3]
-                        if output_array[-2][6] == 'W':
-                            lonA = output_array[-2][5] * -1
-                        else:
-                            lonA = output_array[-2][5]
-                        if output_array[-1][4] == 'S':
-                            latB = output_array[-1][3] * -1
-                        else:
-                            latB = output_array[-1][3]
-                        if output_array[-1][6] == 'W':
-                            lonB = output_array[-1][5] * -1
-                        else:
-                            lonB = output_array[-1][5]
-                        try:
-                            if latA != latB or lonA != lonB:
-                                output_array[-2][7] = str(get_distance(latA, lonA, latB, lonB) * 3.6)
-                                oriented_camera_direction = float(
-                                    getDegree(latA, lonA, latB, lonB)) + camera_orientation
-                                if oriented_camera_direction > 360:
-                                    oriented_camera_direction -= 360
-                                output_array[-2][8] = oriented_camera_direction
-                        except Exception:
-                            pass
-                        if dfr is True and len(output_array) > 1:  # Interpolation of the GPS trace
-                            interpolating_array = gps_trace_interpolator(output_array)
-                            output_array.insert(-1, interpolating_array)
+                    if line_number % data_rate == 0:
+                        output_array.append(
+                            ['GPX', time_str, 'A', abs(lat), ns, abs(lon), ew, '0.0', '0', date, '',
+                             '', '\n'])
+                        print(line_number)
+                        line_number += 1
+                        if len(output_array) > 1:
+                            if output_array[-2][4] == 'S':
+                                latA = output_array[-2][3] * -1
+                            else:
+                                latA = output_array[-2][3]
+                            if output_array[-2][6] == 'W':
+                                lonA = output_array[-2][5] * -1
+                            else:
+                                lonA = output_array[-2][5]
+                            if output_array[-1][4] == 'S':
+                                latB = output_array[-1][3] * -1
+                            else:
+                                latB = output_array[-1][3]
+                            if output_array[-1][6] == 'W':
+                                lonB = output_array[-1][5] * -1
+                            else:
+                                lonB = output_array[-1][5]
+                            try:
+                                if latA != latB or lonA != lonB:
+                                    output_array[-2][7] = str(
+                                        get_distance(latA, lonA, latB, lonB) * 3.6)
+                                    oriented_camera_direction = float(
+                                        getDegree(latA, lonA, latB, lonB)) + camera_orientation
+                                    if oriented_camera_direction > 360:
+                                        oriented_camera_direction -= 360
+                                    output_array[-2][8] = oriented_camera_direction
+                            except Exception:
+                                pass
+                            if fr == 0.5 and len(
+                                    output_array) > 1:  # Interpolation of the GPS trace
+                                interpolating_array = gps_trace_interpolator(output_array)
+                                output_array.insert(-1, interpolating_array)
     return output_array
 
 
-def generate_kml_and_csv(rootdir, dfr, camera_orientation):
+def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
     global merged_trace
     column_names = 'filename,latitude,longitude,speed_kmh,bearing,timestamp\n'
     if not pm:
@@ -355,21 +384,25 @@ def generate_kml_and_csv(rootdir, dfr, camera_orientation):
                     os.path.basename(video_file_list[video_file_index]).lower().split('.')[0]:
                 # video_file_index = gps_file_index
                 if trace_file_format == 'nmea':
-                    source_trace = open(video_file_list[video_file_index].split('.')[0] + '.NMEA', mode='r',
+                    source_trace = open(video_file_list[video_file_index].split('.')[0] + '.NMEA',
+                                        mode='r',
                                         encoding='utf-8')
                 elif trace_file_format == 'gpx':
-                    source_trace = open(video_file_list[video_file_index].split('.')[0] + '.GPX', mode='r',
+                    source_trace = open(video_file_list[video_file_index].split('.')[0] + '.GPX',
+                                        mode='r',
                                         encoding='utf-8')
                 else:
                     if os.path.exists(video_file_list[video_file_index].split('.')[0] + '.NMEA'):
-                        source_trace = open(video_file_list[video_file_index].split('.')[0] + '.NMEA', mode='r',
-                                            encoding='utf-8')
+                        source_trace = open(
+                            video_file_list[video_file_index].split('.')[0] + '.NMEA', mode='r',
+                            encoding='utf-8')
                     elif os.path.exists(video_file_list[video_file_index].split('.')[0] + '.GPX'):
-                        source_trace = open(video_file_list[video_file_index].split('.')[0] + '.GPX', mode='r',
-                                            encoding='utf-8')
+                        source_trace = open(
+                            video_file_list[video_file_index].split('.')[0] + '.GPX', mode='r',
+                            encoding='utf-8')
             image_sn = 1
             if source_trace:
-                msg_array = gps_trace_iterator(source_trace, dfr, camera_orientation)
+                msg_array = gps_trace_iterator(source_trace, frame_interval, camera_orientation)
                 for msg_seg in msg_array:
                     bearing = None
                     icon_style = '<styleUrl>#idle_icon</styleUrl><Style>{}</Style>'
@@ -383,7 +416,8 @@ def generate_kml_and_csv(rootdir, dfr, camera_orientation):
 
                     # CSV attributes
                     gps_parsed = '{},{},{},{},{},{}\n'.format(
-                        (csv_file_name_list[gps_file_index] + '-' + str(image_sn) + '.jpg').replace('.csv', ''),
+                        (csv_file_name_list[gps_file_index] + '-' + str(image_sn) + '.jpg').replace(
+                            '.csv', ''),
                         str(msg_seg[3]), str(msg_seg[5]), speed, bearing, date_time_tuple)
                     gps_file.write(gps_parsed)
                     if not pm:
@@ -392,15 +426,21 @@ def generate_kml_and_csv(rootdir, dfr, camera_orientation):
                     attrib = gps_parsed.split(',')
                     if speed != '':
                         kml_file.write(
-                            "<Placemark><description><![CDATA[<img src=\"./" + attrib[0] + "\" width=\"720\"/>" +
+                            "<Placemark><description><![CDATA[<img src=\"./" + attrib[
+                                0] + "\" width=\"720\"/>" +
                             "<table><tr><th>filename</th><th>latitude</th><th>longitude</th><th>time_stamp_utc"
-                            "</th><th>speed_kmh</th><th>bearing</th></tr><tr><th>" + attrib[0] + "</th><th>" +
-                            attrib[1] + "</th><th>" + attrib[2] + "</th><th>" + attrib[5].replace('\n',
-                                                                                                  '') + "</th><th>" +
-                            str(float(attrib[3]) * 1.852) + "</th><th>" + attrib[4] + "</th></tr></table>" +
-                            "]]></description><LookAt><longitude>" + attrib[2] + "</longitude><latitude>" + attrib[1] +
+                            "</th><th>speed_kmh</th><th>bearing</th></tr><tr><th>" + attrib[
+                                0] + "</th><th>" +
+                            attrib[1] + "</th><th>" + attrib[2] + "</th><th>" + attrib[5].replace(
+                                '\n',
+                                '') + "</th><th>" +
+                            str(float(attrib[3]) * 1.852) + "</th><th>" + attrib[
+                                4] + "</th></tr></table>" +
+                            "]]></description><LookAt><longitude>" + attrib[
+                                2] + "</longitude><latitude>" + attrib[1] +
                             "</latitude><altitude>0</altitude><gx:altitudeMode>relativeToSeaFloor"
-                            "</gx:altitudeMode><heading>" + attrib[4] + "</heading><tilt>0</tilt><range>"
+                            "</gx:altitudeMode><heading>" + attrib[
+                                4] + "</heading><tilt>0</tilt><range>"
                             + str(float(attrib[3]) * 1.852 * 4 + 20) +
                             "</range></LookAt><styleUrl>#arrow_icon</styleUrl>" + icon_style.format(
                                 attrib[4]) + "<Point>"
@@ -409,9 +449,11 @@ def generate_kml_and_csv(rootdir, dfr, camera_orientation):
                         image_file_abspath = os.path.join(image_folder_path, attrib[0])
                         if os.path.exists(image_file_abspath):
                             try:
-                                exif_injector(image_file_abspath, float(msg_seg[3]), float(msg_seg[5]), bearing,
+                                exif_injector(image_file_abspath, float(msg_seg[3]),
+                                              float(msg_seg[5]), bearing,
                                               date_time_tuple, speed)
-                                file_creation_time_modifier(image_file_abspath, date_time_tuple.timestamp())
+                                file_creation_time_modifier(image_file_abspath,
+                                                            date_time_tuple.timestamp())
                             except Exception:
                                 pass
                     image_sn += 1
@@ -421,7 +463,8 @@ def generate_kml_and_csv(rootdir, dfr, camera_orientation):
 
 def exif_injector(image, decimal_lat, decimal_lon, direction, datetime_obj, speed):
     dms_formatter = lambda decimal: (int(decimal), int((float(decimal) - int(decimal)) * 60), round(
-        (float((float(decimal) - int(decimal)) * 60) - int((float(decimal) - int(decimal)) * 60)) * 6000))
+        (float((float(decimal) - int(decimal)) * 60) - int(
+            (float(decimal) - int(decimal)) * 60)) * 6000))
     dms_lat = dms_formatter(decimal_lat)
     dms_lon = dms_formatter(decimal_lon)
     if decimal_lat >= 0:
@@ -433,7 +476,8 @@ def exif_injector(image, decimal_lat, decimal_lon, direction, datetime_obj, spee
     else:
         ew = b'W'
     exif_datetime = datetime_obj.strftime(u'%Y:%m:%d %H:%M:%S')
-    gps_ifd = {1: ns, 2: ((int(dms_lat[0]), 1), (int(dms_lat[1]), 1), (int(dms_lat[2]), 100)), 3: ew,
+    gps_ifd = {1: ns, 2: ((int(dms_lat[0]), 1), (int(dms_lat[1]), 1), (int(dms_lat[2]), 100)),
+               3: ew,
                4: ((int(dms_lon[0]), 1), (int(dms_lon[1]), 1), (int(dms_lon[2]), 100)),
                13: (int(float(speed) * 100), 100), 12: b'K', 15: (int(direction), 1), 14: b'T'}
 
@@ -455,7 +499,7 @@ def file_creation_time_modifier(file_name, time_stamp):
         CloseHandle(handler)
 
 
-def generate_dmo_trace(rootdir, format, dfr, camera_orientation):
+def generate_dmo_trace(rootdir, format, frame_interval, camera_orientation):
     match_trace_file = None
     for creation_time_index in range(len(creation_time_list)):
         menu_file = open(menu_file_list[creation_time_index], mode='w', encoding='utf-8')
@@ -475,15 +519,19 @@ def generate_dmo_trace(rootdir, format, dfr, camera_orientation):
                             match_trace_file = re.match(file_type, filePath.lower())
                 if match_trace_file:
                     trace_file_path = str(match_trace_file.group())
-                    trace_file_name = (trace_file_path.replace('\\', '/').split('/')[-1].split('.'))[0]
-                    trace_file_creation_time = time.strftime('%m_%d_%y', time.gmtime(os.path.getmtime(trace_file_path)))
+                    trace_file_name = \
+                        (trace_file_path.replace('\\', '/').split('/')[-1].split('.'))[0]
+                    trace_file_creation_time = time.strftime('%m_%d_%y', time.gmtime(
+                        os.path.getmtime(trace_file_path)))
                     video_file_index = creation_time_index
                     trace_file_index = 0
-                    if trace_file_creation_time == menu_file_list[video_file_index].replace('\\', '/').split('/')[-2]:
+                    if trace_file_creation_time == \
+                            menu_file_list[video_file_index].replace('\\', '/').split('/')[-2]:
                         trace_file_input = open(trace_file_path, mode='r', encoding='utf8')
                         image_sn = 1
 
-                        msg_array = gps_trace_iterator(trace_file_input, dfr, camera_orientation)
+                        msg_array = gps_trace_iterator(trace_file_input, frame_interval,
+                                                       camera_orientation)
                         for msg_seg in msg_array:
                             bearing = None
                             if msg_seg[8] != '':
@@ -491,24 +539,32 @@ def generate_dmo_trace(rootdir, format, dfr, camera_orientation):
                             speed = msg_seg[7]
                             date_time_tuple = datetime.datetime.strptime(
                                 msg_seg[9].split('.')[0] + msg_seg[1].split('.')[0], '%d%m%y%H%M%S')
-                            timestamp = (str(date_time_tuple.strftime('%d/%m/%y %H:%M:%S')) + '.' + str(
+                            timestamp = (str(
+                                date_time_tuple.strftime('%d/%m/%y %H:%M:%S')) + '.' + str(
                                 int(msg_seg[1].split('.')[1])))
-                            image = '/images/{}/{}/{}-{}.jpg'.format(trace_file_creation_time, trace_file_name,
+                            image = '/images/{}/{}/{}-{}.jpg'.format(trace_file_creation_time,
+                                                                     trace_file_name,
                                                                      trace_file_name, str(image_sn))
                             if speed != '' and int(float(speed)) != 0:
-                                gps_parsed = '{},{},{},{},{},{}'.format(str(msg_seg[5]), str(msg_seg[3]), bearing, '1',
-                                                                        str(float(msg_seg[7]) * 1.852),
-                                                                        timestamp).replace(',,', ',0,')
-                                menu_parsed_rdf = '{}|{}|{}|{}|{}|0|\n'.format(str(int(float(msg_seg[3]) * 100000.0)),
-                                                                               str(int(float(msg_seg[5]) * 100000.0)),
-                                                                               bearing, '0',
-                                                                               ('.' + image).replace('.csv', ''),
-                                                                               '0').replace('||', '|0|')
-                                menu_parsed_atlas = '{}|{}|{}|{}|{}|0|\n'.format(str(int(float(msg_seg[3]) * 100000.0)),
-                                                                                 str(int(float(msg_seg[5]) * 100000.0)),
-                                                                                 bearing, '0',
-                                                                                 (rootdir + image).replace('.csv', ''),
-                                                                                 '0').replace('||', '|0|')
+                                gps_parsed = '{},{},{},{},{},{}'.format(str(msg_seg[5]),
+                                                                        str(msg_seg[3]), bearing,
+                                                                        '1',
+                                                                        str(float(
+                                                                            msg_seg[7]) * 1.852),
+                                                                        timestamp).replace(',,',
+                                                                                           ',0,')
+                                menu_parsed_rdf = '{}|{}|{}|{}|{}|0|\n'.format(
+                                    str(int(float(msg_seg[3]) * 100000.0)),
+                                    str(int(float(msg_seg[5]) * 100000.0)),
+                                    bearing, '0',
+                                    ('.' + image).replace('.csv', ''),
+                                    '0').replace('||', '|0|')
+                                menu_parsed_atlas = '{}|{}|{}|{}|{}|0|\n'.format(
+                                    str(int(float(msg_seg[3]) * 100000.0)),
+                                    str(int(float(msg_seg[5]) * 100000.0)),
+                                    bearing, '0',
+                                    (rootdir + image).replace('.csv', ''),
+                                    '0').replace('||', '|0|')
                                 dmo_gps_file.write(gps_parsed + '\n')
                                 if format == '1' and float(msg_seg[7]) > 0:  # RDF
                                     menu_file.write(menu_parsed_rdf)
@@ -537,7 +593,6 @@ def mapillary_uploader(image_path, uid):
     os.system(mapillary_command)
 
 
-
 def quit():
     global app
     app.destroy()
@@ -546,9 +601,11 @@ def quit():
 def check_yesno():
     root_path = dest_path.get()
     if os.path.exists(dest_path.get()):
-        if messagebox.askyesno("ARE YOU SURE?", "CAUTION!\nALL EXISTING RESULTS WILL BE DELETED:\n{}\n{}\n{}".format(
-                os.path.join(root_path, 'audio'), os.path.join(root_path, 'gps'),
-                os.path.join(root_path, 'image')).replace('\\', '/')):
+        if messagebox.askyesno("ARE YOU SURE?",
+                               "CAUTION!\nALL EXISTING RESULTS WILL BE DELETED:\n{}\n{}\n{}".format(
+                                   os.path.join(root_path, 'audio'),
+                                   os.path.join(root_path, 'gps'),
+                                   os.path.join(root_path, 'image')).replace('\\', '/')):
             purge()
     else:
         messagebox.showwarning("Error", "Invalid destination path, please check.")
@@ -584,7 +641,7 @@ def purge():
 
 def runner():
     print('Task Starts!\n----------------------------')
-    dfr = double_frame_rate.get()
+    fr = frame_rate.get()
     ev = extracting_video.get()
     input_path = user_input_path.get().replace('\\', '/')
     output_path = dest_path.get().replace('\\', '/')
@@ -594,15 +651,23 @@ def runner():
     m_uid = mapillary_user_name.get()
     init_config = open('./config.ini', mode='w')
     init_config.write(
-        '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res, extracting_audio.get(), mf, ev,
-                                                          str(dfr), ph, mapillary_uploader_switch.get(), m_uid))
+        '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res,
+                                                          extracting_audio.get(), mf, ev,
+                                                          fr, ph, mapillary_uploader_switch.get(),
+                                                          m_uid))
     init_config.close()
     if ev == 0:
         ea = 0
     else:
         ea = extracting_audio.get()
     create_dir(output_path)
-    capture_frames(input_path, output_path, res, ev, ea, dfr, ph)
+    if frame_rate.get() == 2:
+        frame_interval = 0.5
+    elif frame_rate.get() == 1:
+        frame_interval = 1.0
+    else:
+        frame_interval = float(interval_input.get())
+    capture_frames(input_path, output_path, res, ev, ea, frame_interval, ph)
     locate_files('csv', 'matchGPS', 'gpsFilePath', gps_trace_file_list, output_path)
     locate_files('kml', 'matchHtml', 'gpsHtmlPath', kml_file_list, output_path)
     locate_files('MENU', 'matchmenu', 'menupath', menu_file_list, output_path)
@@ -618,12 +683,12 @@ def runner():
     elif camera_direction.get() == '↑ Front':
         camera_orientation = 0
 
-    def trace_processor(output_path, mf, dfr, camera_orientation):
-        generate_kml_and_csv(output_path, dfr, camera_orientation)
+    def trace_processor(output_path, mf, frame_interval, camera_orientation):
+        generate_kml_and_csv(output_path, frame_interval, camera_orientation)
         if not pm:
-            generate_dmo_trace(output_path, mf, dfr, camera_orientation)
+            generate_dmo_trace(output_path, mf, frame_interval, camera_orientation)
 
-    trace_processor(output_path, mf, dfr, camera_orientation)
+    trace_processor(output_path, mf, frame_interval, camera_orientation)
     print('*** Process completed! ***\n')
     if os.path.exists(output_path + '/error_log.txt'):
         print('*** Some files couldn\'t be proccessed, Please check "error_log.txt". ***')
@@ -634,7 +699,8 @@ def runner():
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1 and (str(sys.argv[1][1:]).lower() == 'gpx' or str(sys.argv[1][1:]).lower() == 'nmea') and (
+    if len(sys.argv) > 1 and (
+            str(sys.argv[1][1:]).lower() == 'gpx' or str(sys.argv[1][1:]).lower() == 'nmea') and (
             str(sys.argv[2][1:]).lower() == 'mov' or str(sys.argv[2][1:]).lower() == 'mp4'):
         trace_file_format = str(sys.argv[1][1:]).lower()
         video_file_format = str(sys.argv[2][1:]).lower()
@@ -661,7 +727,8 @@ if __name__ == '__main__':
 
     app = Tk()
     app.resizable(0, 0)
-    app.title('Dashcam Video Tool {} {}'.format(trace_file_format.upper(), video_file_format.upper()))
+    app.title(
+        'Dashcam Video Tool {} {}'.format(trace_file_format.upper(), video_file_format.upper()))
 
     creation_time_list = []
     video_file_list = []
@@ -674,7 +741,9 @@ if __name__ == '__main__':
     res_selection = StringVar()
     menu_format = StringVar()
     extracting_video = IntVar()
-    double_frame_rate = BooleanVar()
+    # double_frame_rate = BooleanVar()
+    frame_rate = IntVar()
+
     extracting_audio = IntVar()
     mapillary_uploader_switch = IntVar()
     pano_photo = IntVar()
@@ -685,15 +754,19 @@ if __name__ == '__main__':
 
     def path_selector(path):
         currdir = path.get()
-        target = filedialog.askdirectory(parent=app, initialdir=currdir, title='Please select a directory')
+        target = filedialog.askdirectory(parent=app, initialdir=currdir,
+                                         title='Please select a directory')
         if len(target) > 0:
             path.delete(0, END)
             path.insert(0, target)
             return path
 
 
-    Button(app, text='   ...   ', command=lambda: path_selector(user_input_path)).grid(row=0, column=3, padx=10,
-                                                                                       pady=10, sticky=E)
+    Button(app, text='   ...   ', command=lambda: path_selector(user_input_path)).grid(row=0,
+                                                                                       column=3,
+                                                                                       padx=10,
+                                                                                       pady=10,
+                                                                                       sticky=E)
     Label(app, text='Destination:').grid(row=1, column=0, padx=10, pady=10, sticky=E)
     dest_path = Entry(app, width=50)
     dest_path.grid(row=1, padx=10, pady=10, column=1, columnspan=3, sticky=W)
@@ -704,10 +777,13 @@ if __name__ == '__main__':
         dest_path.insert(0, user_input_path.get())
 
 
-    Button(app, text='   ...   ', command=lambda: path_selector(dest_path)).grid(row=1, column=3, padx=10, pady=10,
+    Button(app, text='   ...   ', command=lambda: path_selector(dest_path)).grid(row=1, column=3,
+                                                                                 padx=10, pady=10,
                                                                                  sticky=E)
-    Button(app, text='As Source', command=copy_source_path).grid(row=1, column=4, padx=10, pady=10, sticky=E)
-    audio_switch = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio, state='disabled')
+    Button(app, text='As Source', command=copy_source_path).grid(row=1, column=4, padx=10, pady=10,
+                                                                 sticky=E)
+    audio_switch = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio,
+                               state='disabled')
     audio_switch.select()
     audio_switch.grid(row=10, column=4, padx=10, pady=10, sticky=W)
 
@@ -737,13 +813,17 @@ if __name__ == '__main__':
                 pano_switch.select()
             pano_switch.grid(row=2, column=4, padx=10, pady=10, sticky=W)
         elif value == 0:
-            ori = Radiobutton(app, text='Original', variable=res_selection, value=' ', state='disabled')
+            ori = Radiobutton(app, text='Original', variable=res_selection, value=' ',
+                              state='disabled')
             ori.grid(row=10, column=1, sticky=W)
-            e720p = Radiobutton(app, text='720p', variable=res_selection, value='-s 1280x720', state='disabled')
+            e720p = Radiobutton(app, text='720p', variable=res_selection, value='-s 1280x720',
+                                state='disabled')
             e720p.grid(row=10, column=2, sticky=W)
-            e480p = Radiobutton(app, text='480p', variable=res_selection, value='-s 853x480', state='disabled')
+            e480p = Radiobutton(app, text='480p', variable=res_selection, value='-s 853x480',
+                                state='disabled')
             e480p.grid(row=10, column=3, sticky=W)
-            audio_switch = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio, state='disabled')
+            audio_switch = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio,
+                                       state='disabled')
             audio_switch.grid(row=10, column=4, padx=10, pady=10, sticky=W)
             pano_switch = Checkbutton(app, text="Panorama", variable=pano_photo, state='disabled')
             pano_switch.grid(row=2, column=4, padx=10, pady=10, sticky=W)
@@ -756,40 +836,61 @@ if __name__ == '__main__':
 
 
     def prerun():
-        if os.path.exists(user_input_path.get()) and os.path.exists(dest_path.get()):
-            runner()
+        if frame_rate.get() == 0.0:
+            try:
+                if not int(float(interval_input.get())) >= 1:
+                    messagebox.showwarning("Error", "Invalid interval, please check.")
+                else:
+                    if os.path.exists(user_input_path.get()) and os.path.exists(dest_path.get()):
+                        runner()
+                    else:
+                        messagebox.showwarning("Error", "Invalid path, please check.")
+            except Exception as e:
+                messagebox.showwarning("Error", "Invalid interval, please check.")
         else:
-            messagebox.showwarning("Error", "Invalid path, please check.")
+            if os.path.exists(user_input_path.get()) and os.path.exists(dest_path.get()):
+                runner()
+            else:
+                messagebox.showwarning("Error", "Invalid path, please check.")
 
 
     go_button = Button(app, text='        GO!        ', command=prerun, bg='lightgreen')
-    go_button.grid(row=40, column=3, padx=10, pady=10, sticky=E)
+    go_button.grid(row=40, column=4, padx=10, pady=10, sticky=E)
 
     if not pm:
         Label(app, text='Menu File Format:').grid(row=20, padx=10, pady=10, sticky=E)
-        Radiobutton(app, text='Relative Path (RDFViewer)', variable=menu_format, value='1').grid(row=20, column=1,
-                                                                                                 sticky=W)
-        Radiobutton(app, text='Absolute Path (Atlas)', variable=menu_format, value='2').grid(row=20, column=2, sticky=W)
+        Radiobutton(app, text='Relative Path (RDFViewer)', variable=menu_format, value='1').grid(
+            row=20, column=1,
+            sticky=W)
+        Radiobutton(app, text='Absolute Path (Atlas)', variable=menu_format, value='2').grid(row=20,
+                                                                                             column=2,
+                                                                                             sticky=W)
 
     Label(app, text='Orientation:').grid(row=20, column=3, sticky=E)
     camera_direction = StringVar(app)
     camera_direction.set('↑ Front')
-    direction_selection = OptionMenu(app, camera_direction, '↑ Front', '↓  Rear', '←  Left', '→ Right').grid(row=20,
-                                                                                                             column=4)
+    direction_selection = OptionMenu(app, camera_direction, '↑ Front', '↓  Rear', '←  Left',
+                                     '→ Right').grid(row=20,
+                                                     column=4)
 
     Label(app, text='Data Rate:').grid(row=40, padx=10, pady=10, sticky=E)
-    fps_1 = Radiobutton(app, text='1 FPS (Default)', variable=double_frame_rate, value=FALSE)
+    fps_1 = Radiobutton(app, text='1 FPS (Default)', variable=frame_rate, value=1)
     fps_1.grid(row=40, column=1, sticky=W)
-    fps_2 = Radiobutton(app, text='2 FPS (Interpolation)', variable=double_frame_rate, value=TRUE)
+    fps_2 = Radiobutton(app, text='2 FPS', variable=frame_rate, value=2)
     fps_2.grid(row=40, column=2, sticky=W)
+    time_lapse = Radiobutton(app, text='Time Lapse (Sec)', variable=frame_rate, value=0)
+    time_lapse.grid(row=40, column=3, sticky=W)
+    interval_input = Entry(app, width=3)
+    interval_input.grid(row=40, padx=10, pady=10, column=3, sticky=E)
 
     purge_button = Button(app, text='Purge Results', command=check_yesno, bg='pink')
-    purge_button.grid(row=40, column=4, padx=10, pady=10, sticky=E)
+    purge_button.grid(row=50, column=4, padx=10, pady=10, sticky=E)
 
     Label(app, text='User Name:').grid(row=50, column=2, padx=10, pady=10, sticky=E)
     mapillary_user_name = Entry(app, width=20)
-    mapillary_user_name.grid(row=50, padx=10, pady=10, column=3, columnspan=3, sticky=W)
-    mapillary_check_button = Checkbutton(app, text="Mapillary Uploader", variable=mapillary_uploader_switch)
+    mapillary_user_name.grid(row=50, padx=10, pady=10, column=3, sticky=W)
+    mapillary_check_button = Checkbutton(app, text="Mapillary Uploader",
+                                         variable=mapillary_uploader_switch)
     mapillary_check_button.grid(row=50, column=1, padx=10, pady=10, sticky=E)
 
     if not pm:
@@ -819,7 +920,7 @@ if __name__ == '__main__':
             else:
                 change_gps_state(1)
             extracting_video.set(int(f[5].replace('\n', '')))
-            double_frame_rate.set(f[6].replace('\n', ''))
+            frame_rate.set(int(f[6].replace('\n', '')))
             pano_photo.set(int(f[7].replace('\n', '')))
             mapillary_uploader_switch.set(int(f[8].replace('\n', '')))
             if mapillary_uploader_switch.get() == 1:
@@ -837,7 +938,7 @@ if __name__ == '__main__':
             extracting_video.set(1)
             extracting_audio.set(1)
             audio_switch.select()
-            double_frame_rate.set(FALSE)
+            frame_rate.set(1)
             pano_photo.set(0)
             mapillary_uploader_switch.set(0)
             mapillary_uid = ''
@@ -854,7 +955,7 @@ if __name__ == '__main__':
         extracting_video.set(1)
         extracting_audio.set(1)
         audio_switch.select()
-        double_frame_rate.set(FALSE)
+        frame_rate.set(1)
         user_input_path.insert(0, '')
         pano_photo.set(0)
         mapillary_uploader_switch.set(0)
