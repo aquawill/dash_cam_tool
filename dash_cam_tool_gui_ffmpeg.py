@@ -15,7 +15,7 @@ from ffmpy import FFmpeg
 from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
 
-pm = True
+pm = False
 v_file_formats = ['mpg', 'avi', 'mp4', 'mov', 'wmv']
 t_file_formats = ['nmea', 'gpx']
 
