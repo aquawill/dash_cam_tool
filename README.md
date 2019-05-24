@@ -64,3 +64,4 @@ dash_cam_tool_v190103
 
 dash_cam_tool_v190523
 *  Add "Time Lapse" mode with customizable interval (seconds).
+*  Compiled with Python 3.7.
