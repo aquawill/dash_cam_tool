@@ -837,16 +837,13 @@ if __name__ == '__main__':
 
     def prerun():
         if frame_rate.get() == 0.0:
-            try:
-                if not int(float(interval_input.get())) >= 1:
-                    messagebox.showwarning("Error", "Invalid interval, please check.")
-                else:
-                    if os.path.exists(user_input_path.get()) and os.path.exists(dest_path.get()):
-                        runner()
-                    else:
-                        messagebox.showwarning("Error", "Invalid path, please check.")
-            except Exception as e:
+            if not int(float(interval_input.get())) >= 1:
                 messagebox.showwarning("Error", "Invalid interval, please check.")
+            else:
+                if os.path.exists(user_input_path.get()) and os.path.exists(dest_path.get()):
+                    runner()
+                else:
+                    messagebox.showwarning("Error", "Invalid path, please check.")
         else:
             if os.path.exists(user_input_path.get()) and os.path.exists(dest_path.get()):
                 runner()
