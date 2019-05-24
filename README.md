@@ -61,3 +61,6 @@ dash_cam_tool_v190103
 
 dash_cam_tool_v190103
 *  Fix Mapillary Uploader issue.
+
+dash_cam_tool_v190523
+*  Add "Time Lapse" mode with customizable interval (seconds).
