@@ -10,7 +10,7 @@ from tkinter import filedialog, messagebox
 
 import gpxpy
 import piexif
-from PIL import Image  # pillow==4.0.0
+from PIL import Image
 from ffmpy import FFmpeg
 from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
