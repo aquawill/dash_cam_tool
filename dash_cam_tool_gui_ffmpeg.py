@@ -15,7 +15,7 @@ from ffmpy import FFmpeg
 from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
 
-pm = False
+pm = True
 v_file_formats = ['mpg', 'avi', 'mp4', 'mov', 'wmv']
 t_file_formats = ['nmea', 'gpx']
 
@@ -31,7 +31,7 @@ def create_dir(rootdir):
 
 def capture_frames(input, output, res, v, a, frame_interval, ph):
     global input_video_file_path
-    app.destroy()
+    app.wm_withdraw()
     for dirPath, dirNames, fileNames in os.walk(input):
         for fileName in fileNames:
             video_file_name = fileName
@@ -321,8 +321,6 @@ def gps_trace_iterator(trace_file_input, fr, camera_orientation):
                         output_array.append(
                             ['GPX', time_str, 'A', abs(lat), ns, abs(lon), ew, '0.0', '0', date, '',
                              '', '\n'])
-                        print(line_number)
-                        line_number += 1
                         if len(output_array) > 1:
                             if output_array[-2][4] == 'S':
                                 latA = output_array[-2][3] * -1
@@ -355,6 +353,7 @@ def gps_trace_iterator(trace_file_input, fr, camera_orientation):
                                     output_array) > 1:  # Interpolation of the GPS trace
                                 interpolating_array = gps_trace_interpolator(output_array)
                                 output_array.insert(-1, interpolating_array)
+                    line_number += 1
     return output_array
 
 
@@ -696,7 +695,10 @@ def runner():
     # Mapillary uploader
     if mapillary_uploader_switch.get() == 1:
         mapillary_uploader(input_path, mapillary_uid)
-
+    app.maxsize(0, 0)
+    msg = messagebox.showinfo("Finished!", "Check folder: " + output_path)
+    if msg == 'ok':
+        quit()
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and (
