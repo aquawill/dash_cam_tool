@@ -1,4 +1,4 @@
-Dash Cam Tool
+Dash Cam Tool 行車記錄器小工具
 ===
 
 有時候會在網路上面看到有人在求行車紀錄器檔案，或是為了過往的行車紀錄器紀錄已經被刪除難以舉證而感到困擾，我常在想，如果有更多的人有備份行車紀錄器的檔案，這樣的問題應該會比較少吧！不過備份這件事情說起來很簡單，但是做起來問題卻很多，例如：
@@ -16,7 +16,7 @@ Dash Cam Tool
 3. 把GPS的位置資料寫入JPG圖檔。
 4. 綜合以上三點，我們可以把這些圖檔全部上傳到Google Photo無限量的網路空間進行備份，並且還帶有位置資料，如下圖：
 
-![](https://i.imgur.com/BsQSRKZ.jpg)
+    ![](https://i.imgur.com/BsQSRKZ.jpg)
 
 範例一: https://photos.app.goo.gl/41phWYD2MyxQn2LP2
 範例二: https://photos.app.goo.gl/TkrnWXR4Ulc8I6xT2
