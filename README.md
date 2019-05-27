@@ -153,6 +153,11 @@ Dash Cam Tool
 20. 如果我覺得很難用怎麼辦?
     * 可以跟作者抱怨,不過請手下留情。
 
+## Libraries
+* ffmpeg.exe (https://github.com/FFmpeg/FFmpeg)
+* exiftool.exe (https://github.com/exiftool/exiftool)
+* mapillary_tools.exe (https://github.com/mapillary/mapillary_tools)
+
 ## Changelog
 Ver. 161207
 * Initial release.
