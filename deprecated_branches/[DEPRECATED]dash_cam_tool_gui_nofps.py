@@ -1,10 +1,9 @@
 import os
 import time
-import re
-from ffmpy import FFmpeg
-import sys
-import pynmea2
 from tkinter import *
+
+import pynmea2
+from ffmpy import FFmpeg
 
 # arrays/lists
 creation_time_list = []

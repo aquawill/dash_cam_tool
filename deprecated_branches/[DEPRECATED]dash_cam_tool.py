@@ -1,7 +1,8 @@
 import os
 import re
-from ffmpy import FFmpeg
+
 import pynmea2
+from ffmpy import FFmpeg
 
 # welcome message
 print("**********************************************")
