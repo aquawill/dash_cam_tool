@@ -18,8 +18,8 @@ Dash Cam Tool 行車記錄器小工具
 
     ![](https://i.imgur.com/BsQSRKZ.jpg)
 
-範例一: https://photos.app.goo.gl/41phWYD2MyxQn2LP2
-範例二: https://photos.app.goo.gl/TkrnWXR4Ulc8I6xT2
+* 範例一: https://photos.app.goo.gl/41phWYD2MyxQn2LP2
+* 範例二: https://photos.app.goo.gl/TkrnWXR4Ulc8I6xT2
 
 另外，這個小工具也有以下特色：
 
@@ -50,7 +50,7 @@ Dash Cam Tool 行車記錄器小工具
 * Image Resolution：輸出圖檔的解析度。
 * Panorama：如果您的攝影機是全景攝影機（如GARMIN Virb 360）請選擇此選項。
 * Extract Audio：將影片檔的音軌另存成mp3檔。
-* Data Rate：可選擇 1)每秒一格 2)每秒兩格 3)縮時攝影（自訂秒數）
+* Data Rate：可選擇 1)每秒一格 2)每秒兩格 3)縮時攝影（自訂間隔秒數）。
 * Mapillary Uploader：若您想把影像上傳到Mapillary，請勾選此選項，並在User Name輸入您在Mapillary的帳號名稱。
 * Orientation：可用來設定攝影機的拍攝方向，有前後左右可選，此選項適用於車上有不只一個行車記錄器的使用者，在轉出後的KML可以顯示拍攝方向。
 * Purge Results：清除Destination之中已經轉出過的影像、軌跡、音軌等資料。 
@@ -78,8 +78,6 @@ Dash Cam Tool 行車記錄器小工具
     第一次使用這功能的時候，會在上傳之前提示需要輸入您在Mapillary上面註冊的電子郵件信箱以及密碼，請輸入後按下enter，就會繼續處理。
     ![](https://i.imgur.com/Rkh1fZY.png)
 
-
-
 8. 您可以使用Google Photo軟體(https://photos.google.com/apps?hl=zh-TW)，設定自動上傳的目錄為您的目的地資料夾，就可以把所有的行車紀錄器影像都備份到Google Photo上面。
 
     ![](https://i.imgur.com/mLMroDD.jpg)
@@ -89,8 +87,6 @@ Dash Cam Tool 行車記錄器小工具
 
     ![](https://i.imgur.com/YCFeSQm.jpg)
     ![](https://i.imgur.com/EWbvMxx.jpg)
-
-
 
 
 ## FAQ
