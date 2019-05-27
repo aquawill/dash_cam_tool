@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9f1f2e67-3080-423a-9181-46657dc8cda1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4182">
-              <caret line="246" column="25" lean-forward="true" selection-start-line="246" selection-start-column="25" selection-end-line="246" selection-end-column="25" />
+            <state relative-caret-position="234">
+              <caret line="231" column="22" selection-start-line="231" selection-start-column="22" selection-end-line="231" selection-end-column="22" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -28,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gps_trace_processor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="378" column="52" lean-forward="true" selection-start-line="378" selection-start-column="52" selection-end-line="378" selection-end-column="53" />
+            <state>
+              <caret line="378" column="52" selection-start-line="378" selection-start-column="52" selection-end-line="378" selection-end-column="53" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -37,12 +36,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor>
-                <caret column="24" selection-start-column="24" selection-end-column="24" />
+                <caret line="225" selection-start-line="225" selection-end-line="225" />
               </first_editor>
               <second_editor />
             </state>
@@ -155,7 +154,7 @@
     </entry>
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -171,22 +170,44 @@
               <item name="dash_cam_tool" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
             <path>
-              <item name="dash_cam_tool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash_cam_tool" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
+              <item name="dash_cam_tool" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\guanlwu\Documents\GitHub\dash_cam_tool" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="dash_cam_tool" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\guanlwu\Documents\GitHub\dash_cam_tool" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="dash_cam_tool" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\guanlwu\Documents\GitHub\dash_cam_tool" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="dictionaries" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="dash_cam_tool" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\guanlwu\Documents\GitHub\dash_cam_tool" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="inspectionProfiles" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -335,26 +356,40 @@
       <option name="project" value="LOCAL" />
       <updated>1558933564929</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Update README.md.">
+      <created>1558933629252</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1558933629252</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update README.md.">
+      <created>1558933694479</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1558933694479</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18869936" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4978678" weight="0.32885906" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49573562" visible="true" weight="0.27900288" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49573562" weight="0.27900288" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39980826" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49733475" weight="0.32981783" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4968017" weight="0.32598275" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.5042644" side_tool="true" visible="true" weight="0.27900288" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5042644" side_tool="true" visible="true" weight="0.27900288" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.36666667" />
       <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.49946696" visible="true" weight="0.32981783" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -459,8 +494,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dash_cam_tool_gui_ffmpeg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4182">
-          <caret line="246" column="25" lean-forward="true" selection-start-line="246" selection-start-column="25" selection-end-line="246" selection-end-column="25" />
+        <state relative-caret-position="234">
+          <caret line="231" column="22" selection-start-line="231" selection-start-column="22" selection-end-line="231" selection-end-column="22" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -469,8 +504,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gps_trace_processor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="378" column="52" lean-forward="true" selection-start-line="378" selection-start-column="52" selection-end-line="378" selection-end-column="53" />
+        <state>
+          <caret line="378" column="52" selection-start-line="378" selection-start-column="52" selection-end-line="378" selection-end-column="53" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -481,7 +516,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor>
-            <caret column="24" selection-start-column="24" selection-end-column="24" />
+            <caret line="225" selection-start-line="225" selection-end-line="225" />
           </first_editor>
           <second_editor />
         </state>
