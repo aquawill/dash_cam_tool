@@ -1,199 +1,22 @@
-import datetime
 import os
 import shutil
-import subprocess
-import threading
-import time
 import webbrowser
 from tkinter import *
 from tkinter import filedialog, messagebox
 
-from PIL import Image
-from ffmpy import FFmpeg
-
+import common_variables
 import gps_trace_processor
-
-pm = True
-v_file_formats = ['mpg', 'avi', 'mp4', 'mov', 'wmv']
-t_file_formats = ['nmea', 'gpx']
-
-creation_time_list = []
-video_file_list = []
-gps_trace_file_list = []
-kml_file_list = []
-menu_file_list = []
-dmo_trace_file_list = []
-csv_file_name_list = []
+from frame_capturer import capture_frames
+from mapillary_uploader import mapillary_uploader
 
 
 def create_dir(root_path):
-    if not pm:
+    if not common_variables.pm:
         if not os.path.exists(root_path + '/gps/'):
             os.mkdir(root_path + '/gps/', mode=777)
     if extracting_audio.get() == 1 and extracting_video.get() == 1:
         if not os.path.exists(root_path + '/audio/'):
             os.mkdir(root_path + '/audio/', mode=777)
-
-
-def capture_frames(input, output, res, v, a, frame_interval, ph):
-    global input_video_file_path
-    app.wm_withdraw()
-    for dirPath, dirNames, fileNames in os.walk(input):
-        for fileName in fileNames:
-            video_file_name = fileName
-            filePath = os.path.join(dirPath, video_file_name)
-            if video_file_format != '':
-                if v_file_formats.index(video_file_format):
-                    file_type = v_file_formats[v_file_formats.index(video_file_format)]
-                    if os.path.basename(filePath).split('.')[-1].lower() == file_type:
-                        input_video_file_path = filePath
-            else:
-                input_video_file_path = None
-                for file_type in v_file_formats:
-                    if os.path.basename(filePath).split('.')[-1].lower() == file_type:
-                        input_video_file_path = filePath
-            if input_video_file_path:
-                full_time = time.strftime('%m_%d_%Y',
-                                          time.gmtime(os.path.getctime(input_video_file_path)))
-                if not pm:
-                    creation_time = full_time[:6] + full_time[8:]
-                else:
-                    creation_time = full_time
-                dmo_gps_file_name = time.strftime('%Y%m%d', time.gmtime(
-                    os.path.getctime(input_video_file_path)))
-                if not pm:
-                    if not dmo_gps_file_name in creation_time_list:
-                        creation_time_list.append(dmo_gps_file_name)
-                else:
-                    creation_time_list.append(dmo_gps_file_name)
-                if not pm:
-                    if not os.path.exists(output + '/gps/' + dmo_gps_file_name + '.gps'):
-                        open(output + '/gps/' + dmo_gps_file_name + '.gps', mode='w',
-                             encoding='utf8')
-                if not os.path.exists(output + '/images/'):
-                    os.mkdir(output + '/images/', mode=777)
-                if not os.path.exists(output + '/images/' + creation_time + '/'):
-                    os.mkdir(output + '/images/' + creation_time + '/', mode=777)
-                pic_path = '{}/images/{}/{}'.format(output, creation_time,
-                                                    str(os.path.relpath(input_video_file_path,
-                                                                        os.path.abspath(input))))
-                if not os.path.exists(pic_path.split('.')[0] + '/'):
-                    os.mkdir(pic_path.split('.')[0] + '/', mode=777)
-                video_file_list.append(input_video_file_path)
-                # making trace files
-                open('{}/{}.csv'.format(pic_path.split('.')[0], video_file_name.split('.')[0]),
-                     mode='w',
-                     encoding='utf-8')
-                open('{}/{}.kml'.format(pic_path.split('.')[0], video_file_name.split('.')[0]),
-                     mode='w',
-                     encoding='utf-8')
-                if not pm:
-                    open('{}/images/{}/MENU'.format(output, creation_time), mode='w',
-                         encoding='utf-8')
-                input_fps = 1 / float(frame_interval);
-                ff = FFmpeg(
-                    inputs={input_video_file_path: None},
-                    outputs={'{}/{}-%d.jpg'.format(
-                        os.path.join(output, '/images/', pic_path.split('.')[0]),
-                        str(fileName.split('.')[0])):
-                                 '-vf fps={} {} -qscale:v 1 -loglevel -8'.format(input_fps, res)})
-                ff_a = FFmpeg(
-                    inputs={input_video_file_path: None},
-                    outputs={'{}/{}/{}.mp3'.format(output, 'audio', str(fileName.split('.')[0])):
-                                 '-f mp3 -ab 64000 -vn -loglevel -8 -y'})
-                t_v = threading.Thread(target=ff.run)
-                t_a = threading.Thread(target=ff_a.run)
-                if v == 1:
-                    try:
-                        print('{} --> Extracting {}'.format(time.asctime(), input_video_file_path),
-                              end='')
-                        if ph == 1:
-                            print(' (Panorama)')
-                        else:
-                            print('')
-                        # """
-                        t_v.start()
-                        if a == 1:
-                            t_a.start()
-                            t_a.join()
-                        t_v.join()
-                        # """
-                        video_ctime = datetime.datetime.utcfromtimestamp(
-                            os.path.getctime(input_video_file_path)).timestamp()
-                        e_threads = []
-                        for fileNames in os.walk(
-                                os.path.join(output, '/images/', pic_path.split('.')[0])):
-                            for fileName in fileNames:
-                                for image_file in fileName:
-                                    image_file = os.path.join(output, '/images/',
-                                                              pic_path.split('.')[0], image_file)
-                                    if os.path.isfile(image_file) and str(image_file).split('.')[
-                                        1] == 'jpg':
-                                        def post_process(input_image):
-                                            if ph == 1:
-                                                img = Image.open(input_image)
-                                                img_w = img.size[0]
-                                                img_h = int(img_w / 2)
-                                                img = img.resize((img_w, img_h), Image.ANTIALIAS)
-                                                img.save(input_image)
-                                                exiftool_cmd = 'exiftool.exe -ProjectionType="equirectangular" ' \
-                                                               '-CroppedAreaImageWidthPixels={} ' \
-                                                               '-CroppedAreaImageHeightPixels={} ' \
-                                                               '-FullPanoWidthPixels={} -FullPanoHeightPixels={} ' \
-                                                               '-CroppedAreaLeftPixels=0 -CroppedAreaTopPixels=0 {} ' \
-                                                               '-overwrite_original'.format(
-                                                    img_w, img_h, img_w, img_h, input_image)
-                                                print('{} --> Generating Panorama: {}'.format(
-                                                    time.asctime(),
-                                                    input_image))
-                                                subprocess.call(exiftool_cmd,
-                                                                stdout=subprocess.PIPE,
-                                                                stderr=subprocess.PIPE)
-                                            time_offset = (float(
-                                                str(input_image).split('.')[0].split('-')[
-                                                    -1]) - 1) / input_fps
-                                            gps_trace_processor.file_creation_time_modifier(
-                                                input_image,
-                                                video_ctime + time_offset)
-
-                                        t_e = threading.Thread(
-                                            target=lambda: post_process(image_file))
-                                        e_threads.append(t_e)
-                                        for t in e_threads:
-                                            try:
-                                                t.start()
-                                                time.sleep(0.1)
-                                                e_threads.remove(t)
-                                            except Exception:
-                                                pass
-                                            while True:
-                                                if len(threading.enumerate()) < 5:
-                                                    break
-                    except Exception:
-                        print(Exception.with_traceback())
-                        # print('* ALERT: Unable to process ' + fileName + ', file seems corrupted.')
-                        # print('* Log added --> ' + output + '/error_log.txt\n')
-                        error_log = open(output + '/error_log.txt', mode='a', encoding='utf-8')
-                        error_log.write(Exception.with_traceback() + '\n')
-                        error_log.write(
-                            '* {}\t{} seems corrupted.\n'.format(str(time.asctime()), input))
-                        pass
-
-
-def mapillary_uploader(image_path, uid):
-    print('----------------------------')
-    print('Start uploading to Mapillary')
-    mapillary_tool_path = ''
-    for dirPath, dirName, fileNames in os.walk(os.getcwd()):
-        for fileName in fileNames:
-            if fileName == 'mapillary_tools.exe':
-                print(dirPath, fileName)
-                mapillary_tool_path = os.path.join(dirPath, fileName)
-                break
-    mapillary_command = '{} process_and_upload --rerun --import_path "{}/images/" --user_name "{}"'.format(
-        mapillary_tool_path, image_path, uid)
-    print(mapillary_command)
-    os.system(mapillary_command)
 
 
 def quit():
@@ -222,7 +45,7 @@ def purge():
         shutil.rmtree(root_path + '/audio', ignore_errors=True)
         finished = True
     if os.path.exists(root_path + '/gps'):
-        if not pm:
+        if not common_variables.pm:
             print('Purge all existing results - gps')
         shutil.rmtree(root_path + '/gps', ignore_errors=True)
         finished = True
@@ -271,13 +94,13 @@ def runner():
     else:
         frame_interval = float(interval_input.get())
     capture_frames(input_path, output_path, res, ev, ea, frame_interval, ph)
-    gps_trace_processor.locate_files('csv', 'matchGPS', 'gpsFilePath', gps_trace_file_list,
-                                     output_path)
-    gps_trace_processor.locate_files('kml', 'matchHtml', 'gpsHtmlPath', kml_file_list, output_path)
-    gps_trace_processor.locate_files('MENU', 'matchmenu', 'menupath', menu_file_list, output_path)
-    gps_trace_processor.locate_files('gps', 'match_dmogps', 'dmogps_path', dmo_trace_file_list,
-                                     output_path)
-    # '↑ Front', '↓  Rear', '←  Left', '→ Right'
+    gps_trace_processor.locate_output_files('csv', common_variables.gps_trace_file_list,
+                                            output_path)
+    gps_trace_processor.locate_output_files('kml', common_variables.kml_file_list, output_path)
+    gps_trace_processor.locate_output_files('MENU', common_variables.menu_file_list, output_path)
+    gps_trace_processor.locate_output_files('gps', common_variables.dmo_trace_file_list,
+                                            output_path)
+
     camera_orientation = 0
     if camera_direction.get() == '→ Right':
         camera_orientation = 90
@@ -288,13 +111,11 @@ def runner():
     elif camera_direction.get() == '↑ Front':
         camera_orientation = 0
 
-    def trace_processor(output_path, mf, frame_interval, camera_orientation):
-        gps_trace_processor.generate_kml_and_csv(output_path, frame_interval, camera_orientation)
-        if not pm:
-            gps_trace_processor.generate_dmo_trace(output_path, mf, frame_interval,
-                                                   camera_orientation)
+    gps_trace_processor.generate_kml_and_csv(output_path, frame_interval, camera_orientation)
+    if not common_variables.pm:
+        gps_trace_processor.dmo_trace_file_generator(output_path, mf, frame_interval,
+                                                     camera_orientation)
 
-    trace_processor(output_path, mf, frame_interval, camera_orientation)
     print('*** Process completed! ***\n')
     if os.path.exists(output_path + '/error_log.txt'):
         print('*** Some files couldn\'t be proccessed, Please check "error_log.txt". ***')
@@ -318,7 +139,7 @@ if __name__ == '__main__':
         trace_file_format = ''
         video_file_format = ''
 
-    if not pm:
+    if not common_variables.pm:
         print("  **********************************************")
         print("  **       Dashcam video conversion tool      **")
         print('  **      Press "GO!" to start extraction.    **')
@@ -335,7 +156,7 @@ if __name__ == '__main__':
         print("\n6. Press \"Go\" to start processing.")
         print("\nFor any inquiry please contact: guan-ling.wu@here.com\n")
 
-    app = Tk()
+    app = common_variables.app
     app.resizable(0, 0)
     app.title(
         'Dashcam Video Tool {} {}'.format(trace_file_format.upper(), video_file_format.upper()))
@@ -456,7 +277,7 @@ if __name__ == '__main__':
     go_button = Button(app, text='        GO!        ', command=prerun, bg='lightgreen')
     go_button.grid(row=40, column=4, padx=10, pady=10, sticky=E)
 
-    if not pm:
+    if not common_variables.pm:
         Label(app, text='Menu File Format:').grid(row=20, padx=10, pady=10, sticky=E)
         Radiobutton(app, text='Relative Path (RDFViewer)', variable=menu_format, value='1').grid(
             row=20, column=1,
@@ -492,7 +313,7 @@ if __name__ == '__main__':
                                          variable=mapillary_uploader_switch)
     mapillary_check_button.grid(row=50, column=1, padx=10, pady=10, sticky=E)
 
-    if not pm:
+    if not common_variables.pm:
         author_email = 'mailto:guan-ling.wu@here.com'
     else:
         author_email = 'mailto:dashcam_tool_report@outlook.com'

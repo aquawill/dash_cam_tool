@@ -8,16 +8,16 @@ import piexif
 from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
 
-import dash_cam_tool_gui_ffmpeg
+import common_variables
 
 
-def locate_files(file_type, match_file, file_path, output_list, output):
+def locate_output_files(file_type, output_list, output):
     for dirPath, dirNames, fileNames in os.walk(output):
         for fileName in fileNames:
             input_file_path = os.path.join(dirPath, fileName)
             match_file = re.match('.*' + file_type, input_file_path)
             if match_file:
-                dash_cam_tool_gui_ffmpeg.csv_file_name_list.append(fileName)
+                common_variables.csv_file_name_list.append(fileName)
                 file_path = str(match_file.group())
                 output_list.append(file_path)
 
@@ -61,11 +61,11 @@ def gps_trace_interpolator(input_array):
     return interpolating_array
 
 
-def getDegree(latA, lonA, latB, lonB):
-    radLatA = radians(latA)
-    radLonA = radians(lonA)
-    radLatB = radians(latB)
-    radLonB = radians(lonB)
+def get_degree(lat_a, lng_a, lat_b, lng_b):
+    radLatA = radians(lat_a)
+    radLonA = radians(lng_a)
+    radLatB = radians(lat_b)
+    radLonB = radians(lng_b)
     dLon = radLonB - radLonA
     y = sin(dLon) * cos(radLatB)
     x = cos(radLatA) * sin(radLatB) - sin(radLatA) * cos(radLatB) * cos(dLon)
@@ -181,7 +181,7 @@ def gps_trace_iterator(trace_file_input, fr, camera_orientation):
                                     output_array[-2][7] = str(
                                         get_distance(latA, lonA, latB, lonB) * 3.6)
                                     oriented_camera_direction = float(
-                                        getDegree(latA, lonA, latB, lonB)) + camera_orientation
+                                        get_degree(latA, lonA, latB, lonB)) + camera_orientation
                                     if oriented_camera_direction > 360:
                                         oriented_camera_direction -= 360
                                     output_array[-2][8] = oriented_camera_direction
@@ -198,15 +198,15 @@ def gps_trace_iterator(trace_file_input, fr, camera_orientation):
 def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
     global merged_trace
     column_names = 'filename,latitude,longitude,speed_kmh,bearing,timestamp\n'
-    if not dash_cam_tool_gui_ffmpeg.pm:
+    if not common_variables.pm:
         merged_trace = open(rootdir + '/GPS_Trace_Merged.log', mode='w', encoding='utf-8')
         merged_trace.write(column_names)
-    for gps_file_index in range(len(dash_cam_tool_gui_ffmpeg.gps_trace_file_list)):
-        gps_file = open(str(dash_cam_tool_gui_ffmpeg.gps_trace_file_list[gps_file_index]), mode='w',
+    for gps_file_index in range(len(common_variables.gps_trace_file_list)):
+        gps_file = open(str(common_variables.gps_trace_file_list[gps_file_index]), mode='w',
                         encoding='utf-8')
         image_folder_path = os.path.dirname(
-            str(dash_cam_tool_gui_ffmpeg.gps_trace_file_list[gps_file_index]))
-        kml_file = open(str(dash_cam_tool_gui_ffmpeg.kml_file_list[gps_file_index]), mode='w',
+            str(common_variables.gps_trace_file_list[gps_file_index]))
+        kml_file = open(str(common_variables.kml_file_list[gps_file_index]), mode='w',
                         encoding='utf-8')
         gps_file.write(column_names)
         # KML meta
@@ -214,47 +214,44 @@ def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
             '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n')
         kml_file.write(kml_meta_1)
         kml_file.write(
-            "<name>" + dash_cam_tool_gui_ffmpeg.gps_trace_file_list[gps_file_index] + "</name>\n")
+            "<name>" + common_variables.gps_trace_file_list[gps_file_index] + "</name>\n")
         kml_meta_2 = (
             '<Style id="arrow_icon"><IconStyle><scale>1</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/track.png</href></Icon><hotSpot x="32" y="32" xunits="pixels" yunits="pixels"/></IconStyle></Style><Style id="idle_icon"><IconStyle><scale>1</scale><Icon><href>http://earth.google.com/images/kml-icons/track-directional/track-none.png</href></Icon><hotSpot x="32" y="32" xunits="pixels" yunits="pixels"/></IconStyle></Style>\n')
         kml_file.write(kml_meta_2)
         # iterate GPS trace
-        for video_file_index in range(len(dash_cam_tool_gui_ffmpeg.video_file_list)):
+        for video_file_index in range(len(common_variables.video_file_list)):
             source_trace = None
             if \
                     os.path.basename(
-                        dash_cam_tool_gui_ffmpeg.kml_file_list[gps_file_index]).lower().split(
+                        common_variables.kml_file_list[gps_file_index]).lower().split(
                         '.')[0] == \
                             os.path.basename(
-                                dash_cam_tool_gui_ffmpeg.video_file_list[
-                                    video_file_index]).lower().split(
+                                common_variables.video_file_list[video_file_index]).lower().split(
                                 '.')[0]:
                 # video_file_index = gps_file_index
-                if dash_cam_tool_gui_ffmpeg.trace_file_format == 'nmea':
+                if common_variables.trace_file_format == 'nmea':
                     source_trace = open(
-                        dash_cam_tool_gui_ffmpeg.video_file_list[video_file_index].split('.')[
+                        common_variables.video_file_list[video_file_index].split('.')[
                             0] + '.NMEA',
-                        mode='r',
-                        encoding='utf-8')
-                elif dash_cam_tool_gui_ffmpeg.trace_file_format == 'gpx':
+                        mode='r', encoding='utf-8')
+                elif common_variables.trace_file_format == 'gpx':
                     source_trace = open(
-                        dash_cam_tool_gui_ffmpeg.video_file_list[video_file_index].split('.')[
+                        common_variables.video_file_list[video_file_index].split('.')[
                             0] + '.GPX',
-                        mode='r',
-                        encoding='utf-8')
+                        mode='r', encoding='utf-8')
                 else:
                     if os.path.exists(
-                            dash_cam_tool_gui_ffmpeg.video_file_list[video_file_index].split('.')[
+                            common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.NMEA'):
                         source_trace = open(
-                            dash_cam_tool_gui_ffmpeg.video_file_list[video_file_index].split('.')[
+                            common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.NMEA', mode='r',
                             encoding='utf-8')
                     elif os.path.exists(
-                            dash_cam_tool_gui_ffmpeg.video_file_list[video_file_index].split('.')[
+                            common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.GPX'):
                         source_trace = open(
-                            dash_cam_tool_gui_ffmpeg.video_file_list[video_file_index].split('.')[
+                            common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.GPX', mode='r',
                             encoding='utf-8')
             image_sn = 1
@@ -273,38 +270,40 @@ def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
 
                     # CSV attributes
                     gps_parsed = '{},{},{},{},{},{}\n'.format(
-                        (dash_cam_tool_gui_ffmpeg.csv_file_name_list[gps_file_index] + '-' + str(
+                        (common_variables.csv_file_name_list[gps_file_index] + '-' + str(
                             image_sn) + '.jpg').replace(
                             '.csv', ''),
                         str(msg_seg[3]), str(msg_seg[5]), speed, bearing, date_time_tuple)
                     gps_file.write(gps_parsed)
-                    if not dash_cam_tool_gui_ffmpeg.pm:
+                    if not common_variables.pm:
                         merged_trace.write(gps_parsed)
                     # KML attributes
-                    attrib = gps_parsed.split(',')
+                    gps_info_list = gps_parsed.split(',')
                     if speed != '':
                         kml_file.write(
-                            "<Placemark><description><![CDATA[<img src=\"./" + attrib[
+                            "<Placemark><description><![CDATA[<img src=\"./" + gps_info_list[
                                 0] + "\" width=\"720\"/>" +
                             "<table><tr><th>filename</th><th>latitude</th><th>longitude</th><th>time_stamp_utc"
-                            "</th><th>speed_kmh</th><th>bearing</th></tr><tr><th>" + attrib[
+                            "</th><th>speed_kmh</th><th>bearing</th></tr><tr><th>" + gps_info_list[
                                 0] + "</th><th>" +
-                            attrib[1] + "</th><th>" + attrib[2] + "</th><th>" + attrib[5].replace(
+                            gps_info_list[1] + "</th><th>" + gps_info_list[2] + "</th><th>" +
+                            gps_info_list[5].replace(
                                 '\n',
                                 '') + "</th><th>" +
-                            str(float(attrib[3]) * 1.852) + "</th><th>" + attrib[
+                            str(float(gps_info_list[3]) * 1.852) + "</th><th>" + gps_info_list[
                                 4] + "</th></tr></table>" +
-                            "]]></description><LookAt><longitude>" + attrib[
-                                2] + "</longitude><latitude>" + attrib[1] +
+                            "]]></description><LookAt><longitude>" + gps_info_list[
+                                2] + "</longitude><latitude>" + gps_info_list[1] +
                             "</latitude><altitude>0</altitude><gx:altitudeMode>relativeToSeaFloor"
-                            "</gx:altitudeMode><heading>" + attrib[
+                            "</gx:altitudeMode><heading>" + gps_info_list[
                                 4] + "</heading><tilt>0</tilt><range>"
-                            + str(float(attrib[3]) * 1.852 * 4 + 20) +
+                            + str(float(gps_info_list[3]) * 1.852 * 4 + 20) +
                             "</range></LookAt><styleUrl>#arrow_icon</styleUrl>" + icon_style.format(
-                                attrib[4]) + "<Point>"
-                                             "<gx:drawOrder>1</gx:drawOrder><coordinates>" +
-                            attrib[2] + "," + attrib[1] + ",0</coordinates></Point></Placemark>\n")
-                        image_file_abspath = os.path.join(image_folder_path, attrib[0])
+                                gps_info_list[4]) + "<Point>"
+                                                    "<gx:drawOrder>1</gx:drawOrder><coordinates>" +
+                            gps_info_list[2] + "," + gps_info_list[
+                                1] + ",0</coordinates></Point></Placemark>\n")
+                        image_file_abspath = os.path.join(image_folder_path, gps_info_list[0])
                         if os.path.exists(image_file_abspath):
                             try:
                                 exif_injector(image_file_abspath, float(msg_seg[3]),
@@ -317,7 +316,6 @@ def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
                     image_sn += 1
                 break
         kml_file.write('</Document>\n</kml>')
-
 
 def exif_injector(image, decimal_lat, decimal_lon, direction, datetime_obj, speed):
     dms_formatter = lambda decimal: (int(decimal), int((float(decimal) - int(decimal)) * 60), round(
@@ -357,29 +355,29 @@ def file_creation_time_modifier(file_name, time_stamp):
         CloseHandle(handler)
 
 
-def generate_dmo_trace(rootdir, format, frame_interval, camera_orientation):
+def dmo_trace_file_generator(rootdir, format, frame_interval, camera_orientation):
     match_trace_file = None
-    for creation_time_index in range(len(dash_cam_tool_gui_ffmpeg.creation_time_list)):
-        menu_file = open(dash_cam_tool_gui_ffmpeg.menu_file_list[creation_time_index], mode='w',
+    for creation_time_index in range(len(common_variables.creation_time_list)):
+        menu_file = open(common_variables.menu_file_list[creation_time_index], mode='w',
                          encoding='utf-8')
-        dmo_gps_file = open(dash_cam_tool_gui_ffmpeg.dmo_trace_file_list[creation_time_index],
+        dmo_gps_file = open(common_variables.dmo_trace_file_list[creation_time_index],
                             mode='w', encoding='utf-8')
         for dirPath, dirNames, fileNames in os.walk(rootdir):
             for fileName in fileNames:
-                filePath = (os.path.join(dirPath, fileName))
-                if dash_cam_tool_gui_ffmpeg.trace_file_format != '':
-                    if dash_cam_tool_gui_ffmpeg.t_file_formats.index(
-                            dash_cam_tool_gui_ffmpeg.trace_file_format):
-                        file_type = dash_cam_tool_gui_ffmpeg.t_file_formats[
-                            dash_cam_tool_gui_ffmpeg.v_file_formats.index(
-                                dash_cam_tool_gui_ffmpeg.video_file_format)]
+                file_path = (os.path.join(dirPath, fileName))
+                if common_variables.trace_file_format != '':
+                    if common_variables.t_file_formats.index(
+                            common_variables.trace_file_format):
+                        file_type = common_variables.t_file_formats[
+                            common_variables.v_file_formats.index(
+                                common_variables.video_file_format)]
                         file_type = re.compile('.*.' + file_type)
-                        match_trace_file = re.match(file_type, filePath)
+                        match_trace_file = re.match(file_type, file_path)
                 else:
-                    for i in dash_cam_tool_gui_ffmpeg.t_file_formats:
+                    for i in common_variables.t_file_formats:
                         file_type = re.compile('.*.' + i)
-                        if re.match(file_type, filePath.lower()):
-                            match_trace_file = re.match(file_type, filePath.lower())
+                        if re.match(file_type, file_path.lower()):
+                            match_trace_file = re.match(file_type, file_path.lower())
                 if match_trace_file:
                     trace_file_path = str(match_trace_file.group())
                     trace_file_name = \
@@ -389,8 +387,8 @@ def generate_dmo_trace(rootdir, format, frame_interval, camera_orientation):
                     video_file_index = creation_time_index
                     trace_file_index = 0
                     if trace_file_creation_time == \
-                            dash_cam_tool_gui_ffmpeg.menu_file_list[video_file_index].replace('\\',
-                                                                                              '/').split(
+                            common_variables.menu_file_list[video_file_index].replace('\\',
+                                                                                      '/').split(
                                 '/')[-2]:
                         trace_file_input = open(trace_file_path, mode='r', encoding='utf8')
                         image_sn = 1

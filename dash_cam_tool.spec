@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['dash_cam_tool_gui_ffmpeg.py'],
-             pathex=['C:\\Users\\guanlwu\\Desktop\\Python_src'],
+a = Analysis(['main.py'],
+             pathex=['.'],
              binaries=[],
              datas=[ ('./ffmpeg.exe', '.'), ('./exiftool.exe', '.'), ('./mapillary_tools.exe', '.') ],
              hiddenimports=[],
