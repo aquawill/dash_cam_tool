@@ -129,7 +129,6 @@ Dash Cam Tool 行車記錄器小工具
 12. 為什麼KML檔跟CSV檔都沒有內容?
     * 如果原本就沒有GPS軌跡,輸出的KML跟CSV就不會有內容。
     * 如果有GPS軌跡但KML/CSV沒有內容,應該是GPS軌跡檔名跟影片不相同,或是格式不相容。
-
 13. 如果我的錄影機沒有GPS功能,但我用其他的GPS紀錄器記錄下軌跡,該怎麼辦?
     * 此工具可以用影片的拍攝時間來校正轉檔後影像的時間資訊,因此只要您的錄影機時間是正確的,應該就可以用轉出的JPG影像檔,再搭配其他的工具軟體來加上GPS軌跡資料。
     * 請上網搜尋「GPS軌跡 相片 同步」來獲得相關說明。
@@ -160,7 +159,6 @@ Dash Cam Tool 行車記錄器小工具
 * gpxpy (https://pypi.org/project/gpxpy/)
 * piexif (https://pypi.org/project/piexif/)
 * pywin32 224 (https://pypi.org/project/pywin32/)
-* 
 
 ## Changelog
 Ver. 161207
