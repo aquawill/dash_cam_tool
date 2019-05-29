@@ -56,35 +56,53 @@ Dash Cam Tool 行車記錄器小工具
 * Purge Results：清除Destination之中已經轉出過的影像、軌跡、音軌等資料。 
 * Go：設定完畢後，開始作業。
 
+---
+
+* 轉檔進行中。
+![](https://i.imgur.com/UhlDoZf.png)
+
+* Mapillary 進行影像處理與上傳。
+![](https://i.imgur.com/brx8MHx.png)
+
+* 處理完畢。
+![](https://i.imgur.com/wSiRkH0.png)
+
+
 ## 使用方法
 
 1. 下載後解壓縮到您想要的任何地方，執行「行車紀錄器轉檔工具.bat」或「run.bat」。
+
 2. 請確定所有的軌跡跟行車記錄器都放在同一個資料夾下，軌跡檔跟對應的行車記錄器影片必須相同檔名！
+    
     ![](https://i.imgur.com/jF3MrfA.jpg)
 
 4. 把Video Source指定為您放置行車記錄器影片跟軌跡的資料夾，Destination指定到您要輸出的目的地資料夾，並依照您的需求設定相關選項。
-5. 按下GO之後就會開始處理，會有一個黑色終端機視窗顯示目前進度，結束後會自動關閉。您可在目的地資料夾的Images --> 拍攝日期 --> 影片檔名中看到轉出的JPG圖檔與軌跡。
 
+5. 按下GO之後就會開始處理，會有一個黑色終端機視窗顯示目前進度，結束後會自動關閉。您可在目的地資料夾的Images --> 拍攝日期 --> 影片檔名中看到轉出的JPG圖檔與軌跡。
+    
     ![](https://i.imgur.com/y9DIbf6.jpg)
 
 5. 如果有轉出聲音為MP3檔的話，則會在目的地資料夾中的audio資料夾。
 
 6. 縮時攝影的功能，可以指定自訂的秒數間隔來擷取影像（感謝熱心使用者回報此需求）。請選擇Time Lapse之後輸入您要自訂的間隔秒數，秒數的長短並沒有限制。
+    
     ![](https://i.imgur.com/eWkpR1d.png)
 
 7. 要把影像備份到Mapillary的話，請先到Mapillary申請帳號，之後再使用這個工具上傳。如果要啟用這個功能，請先勾選Mapillary Uploader，然後在右邊輸入自己在Mapillary的帳號名稱。
+    
     ![](https://i.imgur.com/eD3M3k2.png)
 
     第一次使用這功能的時候，會在上傳之前提示需要輸入您在Mapillary上面註冊的電子郵件信箱以及密碼，請輸入後按下enter，就會繼續處理。
+    
     ![](https://i.imgur.com/Rkh1fZY.png)
 
 8. 您可以使用Google Photo軟體(https://photos.google.com/apps?hl=zh-TW)，設定自動上傳的目錄為您的目的地資料夾，就可以把所有的行車紀錄器影像都備份到Google Photo上面。
-
+    
     ![](https://i.imgur.com/mLMroDD.jpg)
 
 * 相關說明: http://www.playpcesor.com/2017/07/google-Backup-and-Sync-from-download.html
-* 不管在手機上還是電腦上，都可以直接在Google Photo裡面直接輸入年月，甚至是地名來查詢影像。
 
+* 不管在手機上還是電腦上，都可以直接在Google Photo裡面直接輸入年月，甚至是地名來查詢影像。
     ![](https://i.imgur.com/YCFeSQm.jpg)
     ![](https://i.imgur.com/EWbvMxx.jpg)
 
@@ -226,6 +244,9 @@ Ver. v190103
 Ver. v190523
 *  Add "Time Lapse" mode with customizable interval (seconds).
 *  Compiled with Python 3.7.
+
+Ver. v190529
+* Add progress bar for FFMpeg tasks.
 
 ---
 <a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/aquawill"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>

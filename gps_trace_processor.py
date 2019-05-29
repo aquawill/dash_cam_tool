@@ -95,7 +95,6 @@ def get_distance(lat_a, lon_a, lat_b, lon_b):
 
 
 def gps_trace_iterator(trace_file_input, fr, camera_orientation):
-    data_rate = 0
     if fr >= 1:
         data_rate = int(fr)
     else:
@@ -161,27 +160,29 @@ def gps_trace_iterator(trace_file_input, fr, camera_orientation):
                              '', '\n'])
                         if len(output_array) > 1:
                             if output_array[-2][4] == 'S':
-                                latA = output_array[-2][3] * -1
+                                lat_last_1 = output_array[-2][3] * -1
                             else:
-                                latA = output_array[-2][3]
+                                lat_last_1 = output_array[-2][3]
                             if output_array[-2][6] == 'W':
-                                lonA = output_array[-2][5] * -1
+                                lng_last_1 = output_array[-2][5] * -1
                             else:
-                                lonA = output_array[-2][5]
+                                lng_last_1 = output_array[-2][5]
                             if output_array[-1][4] == 'S':
-                                latB = output_array[-1][3] * -1
+                                lat_last_2 = output_array[-1][3] * -1
                             else:
-                                latB = output_array[-1][3]
+                                lat_last_2 = output_array[-1][3]
                             if output_array[-1][6] == 'W':
-                                lonB = output_array[-1][5] * -1
+                                lng_last_2 = output_array[-1][5] * -1
                             else:
-                                lonB = output_array[-1][5]
+                                lng_last_2 = output_array[-1][5]
                             try:
-                                if latA != latB or lonA != lonB:
+                                if lat_last_1 != lat_last_2 or lng_last_1 != lng_last_2:
                                     output_array[-2][7] = str(
-                                        get_distance(latA, lonA, latB, lonB) * 3.6)
+                                        get_distance(lat_last_1, lng_last_1, lat_last_2,
+                                                     lng_last_2) * 3.6)
                                     oriented_camera_direction = float(
-                                        get_degree(latA, lonA, latB, lonB)) + camera_orientation
+                                        get_degree(lat_last_1, lng_last_1, lat_last_2,
+                                                   lng_last_2)) + camera_orientation
                                     if oriented_camera_direction > 360:
                                         oriented_camera_direction -= 360
                                     output_array[-2][8] = oriented_camera_direction
@@ -221,39 +222,32 @@ def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
         # iterate GPS trace
         for video_file_index in range(len(common_variables.video_file_list)):
             source_trace = None
-            if \
+            if os.path.basename(
+                    common_variables.kml_file_list[gps_file_index]).lower().split('.')[0] == \
                     os.path.basename(
-                        common_variables.kml_file_list[gps_file_index]).lower().split(
-                        '.')[0] == \
-                            os.path.basename(
-                                common_variables.video_file_list[video_file_index]).lower().split(
-                                '.')[0]:
+                        common_variables.video_file_list[video_file_index]).lower().split('.')[0]:
                 # video_file_index = gps_file_index
                 if common_variables.trace_file_format == 'nmea':
                     source_trace = open(
                         common_variables.video_file_list[video_file_index].split('.')[
-                            0] + '.NMEA',
-                        mode='r', encoding='utf-8')
+                            0] + '.NMEA', mode='r', encoding='utf-8')
                 elif common_variables.trace_file_format == 'gpx':
                     source_trace = open(
                         common_variables.video_file_list[video_file_index].split('.')[
-                            0] + '.GPX',
-                        mode='r', encoding='utf-8')
+                            0] + '.GPX', mode='r', encoding='utf-8')
                 else:
                     if os.path.exists(
                             common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.NMEA'):
                         source_trace = open(
                             common_variables.video_file_list[video_file_index].split('.')[
-                                0] + '.NMEA', mode='r',
-                            encoding='utf-8')
+                                0] + '.NMEA', mode='r', encoding='utf-8')
                     elif os.path.exists(
                             common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.GPX'):
                         source_trace = open(
                             common_variables.video_file_list[video_file_index].split('.')[
-                                0] + '.GPX', mode='r',
-                            encoding='utf-8')
+                                0] + '.GPX', mode='r', encoding='utf-8')
             image_sn = 1
             if source_trace:
                 msg_array = gps_trace_iterator(source_trace, frame_interval, camera_orientation)
@@ -316,6 +310,7 @@ def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
                     image_sn += 1
                 break
         kml_file.write('</Document>\n</kml>')
+
 
 def exif_injector(image, decimal_lat, decimal_lon, direction, datetime_obj, speed):
     dms_formatter = lambda decimal: (int(decimal), int((float(decimal) - int(decimal)) * 60), round(
