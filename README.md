@@ -153,6 +153,14 @@ Dash Cam Tool 行車記錄器小工具
 * ffmpeg.exe (https://github.com/FFmpeg/FFmpeg)
 * exiftool.exe (https://github.com/exiftool/exiftool)
 * mapillary_tools.exe (https://github.com/mapillary/mapillary_tools)
+* Pillow (https://pypi.org/project/Pillow/)
+* ffmpy (https://pypi.org/project/ffmpy/)
+* pexpect (https://pypi.org/project/pexpect/)
+* progressbar (https://pypi.org/project/progressbar/)
+* gpxpy (https://pypi.org/project/gpxpy/)
+* piexif (https://pypi.org/project/piexif/)
+* pywin32 224 (https://pypi.org/project/pywin32/)
+* 
 
 ## Changelog
 Ver. 161207
