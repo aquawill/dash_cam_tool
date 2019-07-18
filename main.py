@@ -318,8 +318,8 @@ if __name__ == '__main__':
     else:
         author_email = 'mailto:dashcam_tool_report@outlook.com'
 
-    purge_button = Button(app, text='☺', command=lambda: webbrowser.open(author_email), bd=0)
-    purge_button.grid(row=60, column=5, padx=0, pady=0, sticky=E)
+    mail_button = Button(app, text='☺', command=lambda: webbrowser.open(author_email), bd=0)
+    mail_button.grid(row=60, column=5, padx=0, pady=0, sticky=E)
 
     if os.path.exists('./config.ini'):
         init_config = open('./config.ini', mode='r')
