@@ -166,10 +166,9 @@ Dash Cam Tool 行車記錄器小工具
 20. 如果我覺得很難用怎麼辦?
     * 可以跟作者抱怨,不過請手下留情。
 
-## Libraries
+## Dependencies
 * ffmpeg.exe (https://github.com/FFmpeg/FFmpeg)
 * exiftool.exe (https://github.com/exiftool/exiftool)
-* mapillary_tools.exe (https://github.com/mapillary/mapillary_tools)
 * Pillow (https://pypi.org/project/Pillow/)
 * ffmpy (https://pypi.org/project/ffmpy/)
 * pexpect (https://pypi.org/project/pexpect/)
@@ -177,6 +176,7 @@ Dash Cam Tool 行車記錄器小工具
 * gpxpy (https://pypi.org/project/gpxpy/)
 * piexif (https://pypi.org/project/piexif/)
 * pywin32 224 (https://pypi.org/project/pywin32/)
+* mapillary_tools.exe (https://github.com/mapillary/mapillary_tools)
 
 ## Changelog
 Ver. 161207
@@ -238,9 +238,6 @@ Ver. v181205
 Ver. v190103
 *  Fix Mapillary Uploader issue.
 
-Ver. v190103
-*  Fix Mapillary Uploader issue.
-
 Ver. v190523
 *  Add "Time Lapse" mode with customizable interval (seconds).
 *  Compiled with Python 3.7.
@@ -248,5 +245,9 @@ Ver. v190523
 Ver. v190529
 * Add progress bar for FFMpeg tasks.
 
+Ver. v200401
+* Fix app crashes when GPS trace contains invalid characters.
+* Fix issues of incorrect timestamp calculation.
+
 ---
-<a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/aquawill"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+<a class="bmc-button" target="_blank" href="https:/+/www.buymeacoffee.com/aquawill"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>

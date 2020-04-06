@@ -37,8 +37,8 @@ def ffmpeg_show_progress(cmd):
                 seconds = int(float(time_stamp_list[2]))
                 if video_duration == 0:
                     video_duration = hours * 3600 + minutes * 60 + seconds
-                    progressbar = ProgressBar(min_value=0, max_value=video_duration)
-
+                    progressbar = ProgressBar(maxval=video_duration)
+                    progressbar.start()
                 else:
                     progress = hours * 3600 + minutes * 60 + seconds
                 progressbar.update(progress)
@@ -121,8 +121,10 @@ def capture_frames(input, output, res, v, a, frame_interval, panorama):
                         else:
                             print('')
                         # """
+                        print('Video: ')
                         ffmpeg_show_progress(ff.cmd)
                         if a == 1:
+                            print('Audio: ')
                             ffmpeg_show_progress(ff_a.cmd)
                         # """
                         video_creation_time = datetime.datetime.utcfromtimestamp(

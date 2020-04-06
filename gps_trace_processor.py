@@ -2,10 +2,10 @@ import datetime
 import os
 import re
 import time
+from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 
 import gpxpy
 import piexif
-from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
 
 import common_variables
@@ -23,37 +23,38 @@ def locate_output_files(file_type, output_list, output):
 
 
 def gps_trace_interpolator(input_array):
+    interpolating_date = input_array[-1][9]
     if input_array[-1][1] != '' and input_array[-2][1] != '':
-        interpolating_time = str(float(input_array[-2][1]) + 0.5)
+        ahead_time = datetime.datetime.strptime('{:013.6f}'.format(float(interpolating_date + str(input_array[-1][1]))), '%d%m%y%H%M%S.%f')
+        behind_time = datetime.datetime.strptime('{:013.6f}'.format(float(interpolating_date + str(input_array[-2][1]))), '%d%m%y%H%M%S.%f')
+        interpolating_time = behind_time + ((ahead_time - behind_time) / 2)
+        interpolating_time_str = interpolating_time.strftime('%H%M%S.%f')
     else:
-        interpolating_time = input_array[-1][1]
-    if len(interpolating_time.split('.')[0]) == 5:
-        interpolating_time = '0' + interpolating_time
+        interpolating_time_str = float('{:013.6f}'.format(input_array[-1][1]))
     if input_array[-1][3] != '' and input_array[-2][3] != '':
-        interpolating_lat = str((float(input_array[-1][3]) + float(input_array[-2][3])) / 2)
+        interpolating_lat = (float(input_array[-1][3]) + float(input_array[-2][3])) / 2
     else:
         interpolating_lat = input_array[-1][3]
     if input_array[-1][5] != '' and input_array[-2][5] != '':
-        interpolating_lon = str((float(input_array[-1][5]) + float(input_array[-2][5])) / 2)
+        interpolating_lon = (float(input_array[-1][5]) + float(input_array[-2][5])) / 2
     else:
         interpolating_lon = input_array[-1][5]
     if input_array[-1][7] != '' and input_array[-2][7] != '':
-        interpolating_speed = str((float(input_array[-1][7]) + float(input_array[-2][7])) / 2)
+        interpolating_speed = (float(input_array[-1][7]) + float(input_array[-2][7])) / 2
     else:
         interpolating_speed = str(input_array[-1][7])
     if input_array[-1][8] != '' and input_array[-2][8] != '':
-        interpolating_bearing = str((float(input_array[-1][8]) + float(input_array[-2][8])) / 2)
+        interpolating_bearing = (float(input_array[-1][8]) + float(input_array[-2][8])) / 2
     else:
         interpolating_bearing = input_array[-1][8]
-    interpolating_date = input_array[-1][9]
     if input_array[-1][3] != '' and input_array[-2][3] != '':
-        interpolating_array = [input_array[-1][0], interpolating_time, input_array[-1][2],
+        interpolating_array = [input_array[-1][0], interpolating_time_str, input_array[-1][2],
                                interpolating_lat, input_array[-1][4], interpolating_lon,
                                input_array[-1][6], interpolating_speed, interpolating_bearing,
                                interpolating_date, input_array[-1][10], input_array[-1][11],
                                input_array[-1][12]]
     else:
-        interpolating_array = [input_array[-1][0], interpolating_time, input_array[-1][2],
+        interpolating_array = [input_array[-1][0], interpolating_time_str, input_array[-1][2],
                                input_array[-1][3], input_array[-1][4], input_array[-1][5],
                                input_array[-1][6], input_array[-1][7], input_array[-1][8],
                                interpolating_date, input_array[-1][10], input_array[-1][11],
@@ -106,8 +107,6 @@ def gps_trace_iterator(trace_file_input, fr, camera_orientation):
         for nmea_line in trace_file_input.readlines():
             if nmea_line[0:6] == '$GPRMC':
                 msg_seg = str(nmea_line).split(',')
-                if float(msg_seg[1]) % 1.0 != 0:
-                    msg_seg[1] = str(round(float(msg_seg[1]), 0))
                 if msg_seg[3] != '':
                     msg_seg[3] = float(msg_seg[3][0:2]) + float(msg_seg[3][2:]) / 60  # lat
                 if msg_seg[4] == 'S':
@@ -241,13 +240,13 @@ def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
                                 0] + '.NMEA'):
                         source_trace = open(
                             common_variables.video_file_list[video_file_index].split('.')[
-                                0] + '.NMEA', mode='r', encoding='utf-8')
+                                0] + '.NMEA', mode='r', encoding='utf-8', errors='ignore')
                     elif os.path.exists(
                             common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.GPX'):
                         source_trace = open(
                             common_variables.video_file_list[video_file_index].split('.')[
-                                0] + '.GPX', mode='r', encoding='utf-8')
+                                0] + '.GPX', mode='r', encoding='utf-8', errors='ignore')
             image_sn = 1
             if source_trace:
                 msg_array = gps_trace_iterator(source_trace, frame_interval, camera_orientation)
@@ -257,11 +256,8 @@ def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
                     if msg_seg[8] != '':
                         bearing = str(int(float(msg_seg[8])))
                         icon_style = '<styleUrl>#arrow_icon</styleUrl><Style><IconStyle><heading>{}</heading></IconStyle></Style>'
-                    speed = msg_seg[7]  # knots
-                    date_time_tuple = datetime.datetime.strptime(
-                        msg_seg[9].split('.')[0] + msg_seg[1].split('.')[0] + str(
-                            int(msg_seg[1].split('.')[1]) * 100000), '%d%m%y%H%M%S%f')
-
+                    speed = msg_seg[7]  #
+                    date_time_tuple = datetime.datetime.strptime(str(msg_seg[9]).split('.')[0] + msg_seg[1], '%d%m%y%H%M%S.%f')
                     # CSV attributes
                     gps_parsed = '{},{},{},{},{},{}\n'.format(
                         (common_variables.csv_file_name_list[gps_file_index] + '-' + str(
