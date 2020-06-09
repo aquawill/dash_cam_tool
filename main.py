@@ -19,7 +19,7 @@ def create_dir(root_path):
             os.mkdir(root_path + '/audio/', mode=777)
 
 
-def quit():
+def quit_app():
     global app
     app.destroy()
 
@@ -75,13 +75,13 @@ def runner():
     res = res_selection.get()
     ph = pano_photo.get()
     m_uid = mapillary_user_name.get()
-    init_config = open('./config.ini', mode='w')
-    init_config.write(
+    init_config_file = open('./config.ini', mode='w')
+    init_config_file.write(
         '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res,
                                                           extracting_audio.get(), mf, ev,
                                                           fr, ph, mapillary_uploader_switch.get(),
                                                           m_uid))
-    init_config.close()
+    init_config_file.close()
     if ev == 0:
         ea = 0
     else:
@@ -126,7 +126,7 @@ def runner():
     app.maxsize(0, 0)
     msg = messagebox.showinfo("Finished!", "Check folder: " + output_path)
     if msg == 'ok':
-        quit()
+        quit_app()
 
 
 if __name__ == '__main__':
@@ -221,35 +221,31 @@ if __name__ == '__main__':
 
     def change_gps_state(value):
         if value == 1:
-            ori = Radiobutton(app, text='Original', variable=res_selection, value=' ')
-            ori.grid(row=10, column=1, sticky=W)
-            e720p = Radiobutton(app, text='720p', variable=res_selection, value='-s 1280x720')
-            e720p.grid(row=10, column=2, sticky=W)
-            e480p = Radiobutton(app, text='480p', variable=res_selection, value='-s 853x480')
-            e480p.grid(row=10, column=3, sticky=W)
-            audio_switch = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio)
+            extract_original_button = Radiobutton(app, text='Original', variable=res_selection, value=' ')
+            extract_original_button.grid(row=10, column=1, sticky=W)
+            extract_720p_button = Radiobutton(app, text='720p', variable=res_selection, value='-s 1280x720')
+            extract_720p_button.grid(row=10, column=2, sticky=W)
+            extract_480p_button = Radiobutton(app, text='480p', variable=res_selection, value='-s 853x480')
+            extract_480p_button.grid(row=10, column=3, sticky=W)
+            extract_audio_check_button = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio)
             if extracting_audio.get() == 1:
-                audio_switch.select()
-            audio_switch.grid(row=10, column=4, padx=10, pady=10, sticky=W)
-            pano_switch = Checkbutton(app, text="Panorama", variable=pano_photo)
+                extract_audio_check_button.select()
+            extract_audio_check_button.grid(row=10, column=4, padx=10, pady=10, sticky=W)
+            panorama_check_button = Checkbutton(app, text="Panorama", variable=pano_photo)
             if pano_photo.get() == 1:
-                pano_switch.select()
-            pano_switch.grid(row=2, column=4, padx=10, pady=10, sticky=W)
+                panorama_check_button.select()
+            panorama_check_button.grid(row=2, column=4, padx=10, pady=10, sticky=W)
         elif value == 0:
-            ori = Radiobutton(app, text='Original', variable=res_selection, value=' ',
-                              state='disabled')
-            ori.grid(row=10, column=1, sticky=W)
-            e720p = Radiobutton(app, text='720p', variable=res_selection, value='-s 1280x720',
-                                state='disabled')
-            e720p.grid(row=10, column=2, sticky=W)
-            e480p = Radiobutton(app, text='480p', variable=res_selection, value='-s 853x480',
-                                state='disabled')
-            e480p.grid(row=10, column=3, sticky=W)
-            audio_switch = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio,
-                                       state='disabled')
-            audio_switch.grid(row=10, column=4, padx=10, pady=10, sticky=W)
-            pano_switch = Checkbutton(app, text="Panorama", variable=pano_photo, state='disabled')
-            pano_switch.grid(row=2, column=4, padx=10, pady=10, sticky=W)
+            extract_original_button = Radiobutton(app, text='Original', variable=res_selection, value=' ', state='disabled')
+            extract_original_button.grid(row=10, column=1, sticky=W)
+            extract_720p_button = Radiobutton(app, text='720p', variable=res_selection, value='-s 1280x720', state='disabled')
+            extract_720p_button.grid(row=10, column=2, sticky=W)
+            extract_480p_button = Radiobutton(app, text='480p', variable=res_selection, value='-s 853x480', state='disabled')
+            extract_480p_button.grid(row=10, column=3, sticky=W)
+            extract_audio_check_button = Checkbutton(app, text="Extract\nAudio", variable=extracting_audio, state='disabled')
+            extract_audio_check_button.grid(row=10, column=4, padx=10, pady=10, sticky=W)
+            panorama_check_button = Checkbutton(app, text="Panorama", variable=pano_photo, state='disabled')
+            panorama_check_button.grid(row=2, column=4, padx=10, pady=10, sticky=W)
 
 
     if extracting_video.get() == 0:

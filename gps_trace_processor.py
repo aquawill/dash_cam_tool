@@ -63,35 +63,35 @@ def gps_trace_interpolator(input_array):
 
 
 def get_degree(lat_a, lng_a, lat_b, lng_b):
-    radLatA = radians(lat_a)
-    radLonA = radians(lng_a)
-    radLatB = radians(lat_b)
-    radLonB = radians(lng_b)
-    dLon = radLonB - radLonA
-    y = sin(dLon) * cos(radLatB)
-    x = cos(radLatA) * sin(radLatB) - sin(radLatA) * cos(radLatB) * cos(dLon)
-    brng = degrees(atan2(y, x))
-    brng = (brng + 360) % 360
-    return brng
+    radians_lat_a = radians(lat_a)
+    radians_lon_a = radians(lng_a)
+    radians_lat_b = radians(lat_b)
+    rad_lon_b = radians(lng_b)
+    distance_lon = rad_lon_b - radians_lon_a
+    y = sin(distance_lon) * cos(radians_lat_b)
+    x = cos(radians_lat_a) * sin(radians_lat_b) - sin(radians_lat_a) * cos(radians_lat_b) * cos(distance_lon)
+    bearing = degrees(atan2(y, x))
+    bearing = (bearing + 360) % 360
+    return bearing
 
 
 def get_distance(lat_a, lon_a, lat_b, lon_b):
-    ra = 6378140  # radius of equator: meter
-    rb = 6356755  # radius of polar: meter
-    flatten = (ra - rb) / ra  # Partial rate of the earth
+    equator_radius = 6378140  # radius of equator: meter
+    polar_radius = 6356755  # radius of polar: meter
+    flatten = (equator_radius - polar_radius) / equator_radius  # Partial rate of the earth
     # change angle to radians
-    radLatA = radians(lat_a)
-    radLonA = radians(lon_a)
-    radLatB = radians(lat_b)
-    radLonB = radians(lon_b)
+    rad_lat_a = radians(lat_a)
+    rad_lon_a = radians(lon_a)
+    rad_lat_b = radians(lat_b)
+    rad_lon_b = radians(lon_b)
 
-    pA = atan(rb / ra * tan(radLatA))
-    pB = atan(rb / ra * tan(radLatB))
-    x = acos(sin(pA) * sin(pB) + cos(pA) * cos(pB) * cos(radLonA - radLonB))
-    c1 = (sin(x) - x) * (sin(pA) + sin(pB)) ** 2 / cos(x / 2) ** 2
-    c2 = (sin(x) + x) * (sin(pA) - sin(pB)) ** 2 / sin(x / 2) ** 2
+    p_a = atan(polar_radius / equator_radius * tan(rad_lat_a))
+    p_b = atan(polar_radius / equator_radius * tan(rad_lat_b))
+    x = acos(sin(p_a) * sin(p_b) + cos(p_a) * cos(p_b) * cos(rad_lon_a - rad_lon_b))
+    c1 = (sin(x) - x) * (sin(p_a) + sin(p_b)) ** 2 / cos(x / 2) ** 2
+    c2 = (sin(x) + x) * (sin(p_a) - sin(p_b)) ** 2 / sin(x / 2) ** 2
     dr = flatten / 8 * (c1 - c2)
-    distance = ra * (x + dr)
+    distance = equator_radius * (x + dr)
     return distance
 
 
@@ -195,11 +195,11 @@ def gps_trace_iterator(trace_file_input, fr, camera_orientation):
     return output_array
 
 
-def generate_kml_and_csv(rootdir, frame_interval, camera_orientation):
+def generate_kml_and_csv(root_dir, frame_interval, camera_orientation):
     global merged_trace
     column_names = 'filename,latitude,longitude,speed_kmh,bearing,timestamp\n'
     if not common_variables.pm:
-        merged_trace = open(rootdir + '/GPS_Trace_Merged.log', mode='w', encoding='utf-8')
+        merged_trace = open(root_dir + '/GPS_Trace_Merged.log', mode='w', encoding='utf-8')
         merged_trace.write(column_names)
     for gps_file_index in range(len(common_variables.gps_trace_file_list)):
         gps_file = open(str(common_variables.gps_trace_file_list[gps_file_index]), mode='w',
@@ -329,9 +329,9 @@ def exif_injector(image, decimal_lat, decimal_lon, direction, datetime_obj, spee
                13: (int(float(speed) * 100), 100), 12: b'K', 15: (int(direction), 1), 14: b'T'}
 
     exif_ifd = {piexif.ExifIFD.DateTimeOriginal: exif_datetime}
-    geotag_info = piexif.dump({'GPS': gps_ifd, 'Exif': exif_ifd})
+    geo_tag_info = piexif.dump({'GPS': gps_ifd, 'Exif': exif_ifd})
     if os.path.exists(image):
-        piexif.insert(geotag_info, image)
+        piexif.insert(geo_tag_info, image)
 
 
 def file_creation_time_modifier(file_name, time_stamp):
@@ -346,14 +346,14 @@ def file_creation_time_modifier(file_name, time_stamp):
         CloseHandle(handler)
 
 
-def dmo_trace_file_generator(rootdir, format, frame_interval, camera_orientation):
+def dmo_trace_file_generator(root_dir, output_file_format, frame_interval, camera_orientation):
     match_trace_file = None
     for creation_time_index in range(len(common_variables.creation_time_list)):
         menu_file = open(common_variables.menu_file_list[creation_time_index], mode='w',
                          encoding='utf-8')
         dmo_gps_file = open(common_variables.dmo_trace_file_list[creation_time_index],
                             mode='w', encoding='utf-8')
-        for dirPath, dirNames, fileNames in os.walk(rootdir):
+        for dirPath, dirNames, fileNames in os.walk(root_dir):
             for fileName in fileNames:
                 file_path = (os.path.join(dirPath, fileName))
                 if common_variables.trace_file_format != '':
@@ -417,12 +417,12 @@ def dmo_trace_file_generator(rootdir, format, frame_interval, camera_orientation
                                     str(int(float(msg_seg[3]) * 100000.0)),
                                     str(int(float(msg_seg[5]) * 100000.0)),
                                     bearing, '0',
-                                    (rootdir + image).replace('.csv', ''),
+                                    (root_dir + image).replace('.csv', ''),
                                     '0').replace('||', '|0|')
                                 dmo_gps_file.write(gps_parsed + '\n')
-                                if format == '1' and float(msg_seg[7]) > 0:  # RDF
+                                if output_file_format == '1' and float(msg_seg[7]) > 0:  # RDF
                                     menu_file.write(menu_parsed_rdf)
-                                elif format == '2' and float(msg_seg[7]) > 0:
+                                elif output_file_format == '2' and float(msg_seg[7]) > 0:
                                     menu_file.write(menu_parsed_atlas)
                             image_sn += 1
                         trace_file_index += 1

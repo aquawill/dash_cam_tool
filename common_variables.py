@@ -13,4 +13,3 @@ t_file_formats = ['nmea', 'gpx']
 app = Tk()
 trace_file_format = ''
 video_file_format = ''
-fileNameList = []
