@@ -7,3 +7,4 @@ pywin32
 piexif
 pynmea2
 pillow
+pyinstaller

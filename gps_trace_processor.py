@@ -6,7 +6,10 @@ from math import radians, cos, sin, degrees, atan2, atan, tan, acos
 
 import gpxpy
 import piexif
-from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
+import platform
+if platform.system() == 'Windows':
+    from win32file import CreateFile, SetFileTime, CloseHandle, GENERIC_WRITE, OPEN_EXISTING
+
 
 import common_variables
 
@@ -247,6 +250,8 @@ def generate_kml_and_csv(root_dir, frame_interval, camera_orientation):
                         source_trace = open(
                             common_variables.video_file_list[video_file_index].split('.')[
                                 0] + '.GPX', mode='r', encoding='utf-8', errors='ignore')
+                    else:
+                        print('No GPS trace file.')
             image_sn = 1
             if source_trace:
                 msg_array = gps_trace_iterator(source_trace, frame_interval, camera_orientation)
@@ -257,7 +262,7 @@ def generate_kml_and_csv(root_dir, frame_interval, camera_orientation):
                         bearing = str(int(float(msg_seg[8])))
                         icon_style = '<styleUrl>#arrow_icon</styleUrl><Style><IconStyle><heading>{}</heading></IconStyle></Style>'
                     speed = msg_seg[7]  #
-                    date_time_tuple = datetime.datetime.strptime(str(msg_seg[9]).split('.')[0] + msg_seg[1], '%d%m%y%H%M%S.%f')
+                    date_time_tuple = datetime.datetime.strptime(str(msg_seg[9]).split('.')[0] + msg_seg[1], '%d%m%y%H%M%S.%f').replace(tzinfo=datetime.timezone.utc)
                     # CSV attributes
                     gps_parsed = '{},{},{},{},{},{}\n'.format(
                         (common_variables.csv_file_name_list[gps_file_index] + '-' + str(
@@ -335,15 +340,20 @@ def exif_injector(image, decimal_lat, decimal_lon, direction, datetime_obj, spee
 
 
 def file_creation_time_modifier(file_name, time_stamp):
-    file_creation_time = datetime.datetime.utcfromtimestamp(time_stamp).replace(
-        tzinfo=datetime.timezone(datetime.timedelta(seconds=time.timezone)))
-    handler = CreateFile(file_name, GENERIC_WRITE, 0, None, OPEN_EXISTING, 0, 0)
-    try:
-        SetFileTime(handler, file_creation_time, file_creation_time, file_creation_time)
-    except Exception:
-        pass
-    finally:
-        CloseHandle(handler)
+    if platform.system() == 'Windows':
+        file_creation_time = datetime.datetime.utcfromtimestamp(time_stamp).replace(
+            tzinfo=datetime.timezone(datetime.timedelta(seconds=time.timezone)))
+        handler = CreateFile(file_name, GENERIC_WRITE, 0, None, OPEN_EXISTING, 0, 0)
+        try:
+            SetFileTime(handler, file_creation_time, file_creation_time, file_creation_time)
+        except Exception:
+            pass
+        finally:
+            CloseHandle(handler)
+    elif platform.system() == 'Darwin':
+        file_creation_time = datetime.datetime.utcfromtimestamp(time_stamp).replace(tzinfo=datetime.timezone.utc)
+        os.system('SetFile -d "{}" {}'.format(file_creation_time.astimezone().strftime('%m/%d/%Y %H:%M:%S'), file_name))
+        
 
 
 def dmo_trace_file_generator(root_dir, output_file_format, frame_interval, camera_orientation):
@@ -393,9 +403,9 @@ def dmo_trace_file_generator(root_dir, output_file_format, frame_interval, camer
                             speed = msg_seg[7]
                             date_time_tuple = datetime.datetime.strptime(
                                 msg_seg[9].split('.')[0] + msg_seg[1].split('.')[0], '%d%m%y%H%M%S')
-                            timestamp = (str(
+                            timestamp = str(
                                 date_time_tuple.strftime('%d/%m/%y %H:%M:%S')) + '.' + str(
-                                int(msg_seg[1].split('.')[1])))
+                                int(msg_seg[1].split('.')[1]))
                             image = '/images/{}/{}/{}-{}.jpg'.format(trace_file_creation_time,
                                                                      trace_file_name,
                                                                      trace_file_name, str(image_sn))

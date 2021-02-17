@@ -3,6 +3,7 @@ import shutil
 import webbrowser
 from tkinter import *
 from tkinter import filedialog, messagebox
+import sys
 
 import common_variables
 import gps_trace_processor
@@ -22,6 +23,7 @@ def create_dir(root_path):
 def quit_app():
     global app
     app.destroy()
+    sys.exit()
 
 
 def check_yesno():
@@ -74,13 +76,13 @@ def runner():
     mf = menu_format.get()
     res = res_selection.get()
     ph = pano_photo.get()
-    m_uid = mapillary_user_name.get()
+    # m_uid = mapillary_user_name.get()
     init_config_file = open('./config.ini', mode='w')
     init_config_file.write(
         '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res,
                                                           extracting_audio.get(), mf, ev,
                                                           fr, ph, mapillary_uploader_switch.get(),
-                                                          m_uid))
+                                                          ))
     init_config_file.close()
     if ev == 0:
         ea = 0
@@ -121,8 +123,6 @@ def runner():
         print('*** Some files couldn\'t be proccessed, Please check "error_log.txt". ***')
         os.system('notepad.exe ' + output_path + '/error_log.txt')
     # Mapillary uploader
-    if mapillary_uploader_switch.get() == 1:
-        mapillary_uploader(input_path, mapillary_uid)
     app.maxsize(0, 0)
     msg = messagebox.showinfo("Finished!", "Check folder: " + output_path)
     if msg == 'ok':
@@ -168,7 +168,6 @@ if __name__ == '__main__':
     frame_rate = IntVar()
 
     extracting_audio = IntVar()
-    mapillary_uploader_switch = IntVar()
     pano_photo = IntVar()
     Label(app, text='Video Source:').grid(row=0, column=0, padx=10, pady=10, sticky=E)
     user_input_path = Entry(app, width=50)
@@ -271,7 +270,7 @@ if __name__ == '__main__':
 
 
     go_button = Button(app, text='        GO!        ', command=prerun, bg='lightgreen')
-    go_button.grid(row=40, column=4, padx=10, pady=10, sticky=E)
+    go_button.grid(row=50, column=3, padx=10, pady=10, sticky=E)
 
     if not common_variables.pm:
         Label(app, text='Menu File Format:').grid(row=20, padx=10, pady=10, sticky=E)
@@ -297,17 +296,10 @@ if __name__ == '__main__':
     time_lapse = Radiobutton(app, text='Time Lapse (Sec)', variable=frame_rate, value=0)
     time_lapse.grid(row=40, column=3, sticky=W)
     interval_input = Entry(app, width=3)
-    interval_input.grid(row=40, padx=10, pady=10, column=3, sticky=E)
+    interval_input.grid(row=40, column=4, pady=10, sticky=W)
 
     purge_button = Button(app, text='Purge Results', command=check_yesno, bg='pink')
     purge_button.grid(row=50, column=4, padx=10, pady=10, sticky=E)
-
-    Label(app, text='User Name:').grid(row=50, column=2, padx=10, pady=10, sticky=E)
-    mapillary_user_name = Entry(app, width=20)
-    mapillary_user_name.grid(row=50, padx=10, pady=10, column=3, sticky=W)
-    mapillary_check_button = Checkbutton(app, text="Mapillary Uploader",
-                                         variable=mapillary_uploader_switch)
-    mapillary_check_button.grid(row=50, column=1, padx=10, pady=10, sticky=E)
 
     if not common_variables.pm:
         author_email = 'mailto:guan-ling.wu@here.com'
@@ -338,11 +330,6 @@ if __name__ == '__main__':
             extracting_video.set(int(f[5].replace('\n', '')))
             frame_rate.set(int(f[6].replace('\n', '')))
             pano_photo.set(int(f[7].replace('\n', '')))
-            mapillary_uploader_switch.set(int(f[8].replace('\n', '')))
-            if mapillary_uploader_switch.get() == 1:
-                mapillary_check_button.select()
-            else:
-                mapillary_check_button.deselect()
             mapillary_uid = f[9].replace('\n', '')
         else:
             root = ''
@@ -356,11 +343,9 @@ if __name__ == '__main__':
             audio_switch.select()
             frame_rate.set(1)
             pano_photo.set(0)
-            mapillary_uploader_switch.set(0)
             mapillary_uid = ''
         user_input_path.insert(0, root)
         dest_path.insert(0, dest)
-        mapillary_user_name.insert(0, mapillary_uid)
     else:
         open('./config.ini', mode='w').close()
         root = ''
@@ -374,7 +359,6 @@ if __name__ == '__main__':
         frame_rate.set(1)
         user_input_path.insert(0, '')
         pano_photo.set(0)
-        mapillary_uploader_switch.set(0)
         mapillary_uid = ''
 
     app.mainloop()
