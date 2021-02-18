@@ -8,7 +8,6 @@ import sys
 import common_variables
 import gps_trace_processor
 from frame_capturer import capture_frames
-from mapillary_uploader import mapillary_uploader
 
 
 def create_dir(root_path):
@@ -79,10 +78,9 @@ def runner():
     # m_uid = mapillary_user_name.get()
     init_config_file = open('./config.ini', mode='w')
     init_config_file.write(
-        '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res,
+        '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res,
                                                           extracting_audio.get(), mf, ev,
-                                                          fr, ph, mapillary_uploader_switch.get(),
-                                                          ))
+                                                          fr, ph))
     init_config_file.close()
     if ev == 0:
         ea = 0

@@ -20,6 +20,7 @@ Dash Cam Tool 行車記錄器小工具
 
 * 範例一: https://photos.app.goo.gl/41phWYD2MyxQn2LP2
 * 範例二: https://photos.app.goo.gl/TkrnWXR4Ulc8I6xT2
+* Google宣布將調整Photos相簿服務儲存空間政策，從2021年6月1日起，不再提供免費無限量儲存空間給以高畫質模式上傳的照片與影片，前述日期之後上傳的高畫質檔案，將與現有選擇「原始畫質儲存」格式儲存的檔案一樣，併入Google帳戶提供的15GB 免費儲存容量或是用戶額外購買的儲存空間內。
 
 另外，這個小工具也有以下特色：
 
@@ -32,9 +33,6 @@ Dash Cam Tool 行車記錄器小工具
 3. 如果您使用的是全景攝影機拍攝全景影片（如Garmin Virb 360），此軟體也可以把轉出的影像檔轉成全景格式，因此備份到Google Photo、Facebook、Flickr的時候也可以用VR模式瀏覽。
 例如（[下圖](https://flic.kr/p/22maft4)）:
     ![](https://i.imgur.com/SSK8otE.jpg)
-
-4. 您也可以使用此軟體把行車記錄器的影像備份到Mapillay （https://www.mapillary.com/）。
-    ![](https://i.imgur.com/b2d6aRR.png)
 
 此軟體開放個人免費使用，請勿用於商業用途，謝謝。
 
@@ -51,7 +49,6 @@ Dash Cam Tool 行車記錄器小工具
 * Panorama：如果您的攝影機是全景攝影機（如GARMIN Virb 360）請選擇此選項。
 * Extract Audio：將影片檔的音軌另存成mp3檔。
 * Data Rate：可選擇 1)每秒一格 2)每秒兩格 3)縮時攝影（自訂間隔秒數）。
-* Mapillary Uploader：若您想把影像上傳到Mapillary，請勾選此選項，並在User Name輸入您在Mapillary的帳號名稱。
 * Orientation：可用來設定攝影機的拍攝方向，有前後左右可選，此選項適用於車上有不只一個行車記錄器的使用者，在轉出後的KML可以顯示拍攝方向。
 * Purge Results：清除Destination之中已經轉出過的影像、軌跡、音軌等資料。 
 * Go：設定完畢後，開始作業。
@@ -60,9 +57,6 @@ Dash Cam Tool 行車記錄器小工具
 
 * 轉檔進行中。
 ![](https://i.imgur.com/UhlDoZf.png)
-
-* Mapillary 進行影像處理與上傳。
-![](https://i.imgur.com/brx8MHx.png)
 
 * 處理完畢。
 ![](https://i.imgur.com/wSiRkH0.png)
@@ -88,15 +82,7 @@ Dash Cam Tool 行車記錄器小工具
     
     ![](https://i.imgur.com/eWkpR1d.png)
 
-7. 要把影像備份到Mapillary的話，請先到Mapillary申請帳號，之後再使用這個工具上傳。如果要啟用這個功能，請先勾選Mapillary Uploader，然後在右邊輸入自己在Mapillary的帳號名稱。
-    
-    ![](https://i.imgur.com/eD3M3k2.png)
-
-    第一次使用這功能的時候，會在上傳之前提示需要輸入您在Mapillary上面註冊的電子郵件信箱以及密碼，請輸入後按下enter，就會繼續處理。
-    
-    ![](https://i.imgur.com/Rkh1fZY.png)
-
-8. 您可以使用Google Photo軟體(https://photos.google.com/apps?hl=zh-TW)，設定自動上傳的目錄為您的目的地資料夾，就可以把所有的行車紀錄器影像都備份到Google Photo上面。
+7. 您可以使用Google Photo軟體(https://photos.google.com/apps?hl=zh-TW)，設定自動上傳的目錄為您的目的地資料夾，就可以把所有的行車紀錄器影像都備份到Google Photo上面。
     
     ![](https://i.imgur.com/mLMroDD.jpg)
 
@@ -176,7 +162,6 @@ Dash Cam Tool 行車記錄器小工具
 * gpxpy (https://pypi.org/project/gpxpy/)
 * piexif (https://pypi.org/project/piexif/)
 * pywin32 224 (https://pypi.org/project/pywin32/)
-* mapillary_tools.exe (https://github.com/mapillary/mapillary_tools)
 
 ## Changelog
 Ver. 161207
@@ -248,6 +233,11 @@ Ver. v190529
 Ver. v200401
 * Fix app crashes when GPS trace contains invalid characters.
 * Fix issues of incorrect timestamp calculation.
+
+Ver. v210218
+* Support MacOS/x86 (testing).
+* Remove bundled Mapillary uploader.
+* Minor issue fix.
 
 ---
 <a class="bmc-button" target="_blank" href="https:/+/www.buymeacoffee.com/aquawill"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
