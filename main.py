@@ -75,7 +75,7 @@ def runner():
     mf = menu_format.get()
     res = res_selection.get()
     ph = pano_photo.get()
-    # m_uid = mapillary_user_name.get()
+
     init_config_file = open('./config.ini', mode='w')
     init_config_file.write(
         '{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n'.format(input_path, output_path, res,
@@ -120,7 +120,7 @@ def runner():
     if os.path.exists(output_path + '/error_log.txt'):
         print('*** Some files couldn\'t be proccessed, Please check "error_log.txt". ***')
         os.system('notepad.exe ' + output_path + '/error_log.txt')
-    # Mapillary uploader
+
     app.maxsize(0, 0)
     msg = messagebox.showinfo("Finished!", "Check folder: " + output_path)
     if msg == 'ok':
